@@ -30,12 +30,15 @@ const FeatureServer = ({
           placement === "left" ? "md:flex-row-reverse" : "md:flex-row",
         )}
       >
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 min-w-60">
           <p className={cn(`text-7xl text-${color}`)}>{title}</p>
           <p className="text-4xl font-medium">{sub}</p>
           <div className="flex md:flex-col gap-8">
             <p className="text-gray-500">{description}</p>
-            <Button variant="outlined" className="md:w-[30%] rounded-[5rem]">
+            <Button
+              variant="outlined"
+              className="md:w-[30%] min-w-40 rounded-[5rem]"
+            >
               Learn More
             </Button>
           </div>
