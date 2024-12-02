@@ -1,6 +1,6 @@
-import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
+import { MigrateUpArgs, MigrateDownArgs, sql } from "@payloadcms/db-postgres";
 
-export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
+export async function up({ payload }: MigrateUpArgs): Promise<void> {
   await payload.db.drizzle.execute(sql`
    CREATE TABLE IF NOT EXISTS "users" (
   	"id" serial PRIMARY KEY NOT NULL,
@@ -211,10 +211,10 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "header_logo_idx" ON "header" USING btree ("logo_id");
   CREATE INDEX IF NOT EXISTS "footer_nav_order_idx" ON "footer_nav" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "footer_nav_parent_id_idx" ON "footer_nav" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "footer_logo_idx" ON "footer" USING btree ("logo_id");`)
+  CREATE INDEX IF NOT EXISTS "footer_logo_idx" ON "footer" USING btree ("logo_id");`);
 }
 
-export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
+export async function down({ payload }: MigrateDownArgs): Promise<void> {
   await payload.db.drizzle.execute(sql`
    DROP TABLE "users" CASCADE;
   DROP TABLE "media" CASCADE;
@@ -227,5 +227,5 @@ export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
   DROP TABLE "header_nav" CASCADE;
   DROP TABLE "header" CASCADE;
   DROP TABLE "footer_nav" CASCADE;
-  DROP TABLE "footer" CASCADE;`)
+  DROP TABLE "footer" CASCADE;`);
 }

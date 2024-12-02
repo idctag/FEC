@@ -16,6 +16,7 @@
     "@payloadcms/payload-cloud": "^3.2.1",
     "@payloadcms/richtext-lexical": "^3.2.1",
     "@tabler/icons-react": "^3.22.0",
+    "@vercel/postgres": "^0.10.0",
     "clsx": "^2.1.1",
     "cobe": "^0.6.3",
     "cross-env": "^7.0.3",
