@@ -1,9 +1,9 @@
 "use client";
 import { Advantage, HeroProps } from "@/blocks/hero/Server";
 import { Button, Carousel } from "@material-tailwind/react";
-import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import {
   Modal,
   ModalBody,
@@ -62,10 +62,10 @@ const HeroLeft = ({ title, subtitle }: { title: string; subtitle: string }) => {
 const HeroRight = ({ advantage }: { advantage: Advantage[] }) => {
   const [index, setIndex] = useState(0);
   return (
-    <div className="h-[600px] w-full md:h-[70vh] md:w-1/2 overflow-hidden">
+    <motion.div className="h-[600px] w-full md:h-[70vh] md:w-1/2 overflow-hidden group/card">
       <Modal>
         <Carousel
-          className="md:rounded-xl overflow-hidden md:max-w-[35vw]"
+          className="overflow-hidden md:max-w-[35vw]"
           loop
           autoplay
           navigation={({ setActiveIndex, activeIndex, length }) => (
@@ -73,7 +73,7 @@ const HeroRight = ({ advantage }: { advantage: Advantage[] }) => {
               {new Array(length).fill("").map((_, i) => (
                 <span
                   key={i}
-                  className={`block h-1 cursor-pointer rounded-2xl transition-all content-[''] ${
+                  className={`rounded-2xl block h-1 cursor-pointer transition-all content-[''] ${
                     activeIndex === i ? "w-8 bg-white" : "w-4 bg-white/50"
                   }`}
                   onClick={() => setActiveIndex(i)}
@@ -83,21 +83,53 @@ const HeroRight = ({ advantage }: { advantage: Advantage[] }) => {
           )}
         >
           {advantage.map((item, idx) => (
-            <ModalTrigger key={idx} className="size-full p-0">
-              <div
-                onClick={() => setIndex(idx)}
-                className="md:rounded-3xl flex h-full w-full relative"
-              >
-                <Image
-                  priority
-                  src={item.image.url!}
-                  alt={item.title}
-                  fill
-                  sizes="w-full, h-auto"
-                  className="md:rounded-3xl"
-                />
-              </div>
-            </ModalTrigger>
+            <motion.div
+              className="size-full"
+              key={idx}
+              initial="initial"
+              exit="exit"
+              whileHover={"start"}
+            >
+              <ModalTrigger className="size-full rounded-3xl p-0">
+                <motion.div className="group-hover/card:block inset-0 hidden absolute w-full h-full overflow-hidden bg-black/40 z-10 transition duration-500" />
+                <div
+                  onClick={() => setIndex(idx)}
+                  className="flex h-full w-full relative"
+                >
+                  <motion.img
+                    variants={{
+                      initial: { scale: 1 },
+                      exit: { scale: 1 },
+                      start: { scale: 1.05 },
+                    }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    src={item.image.url!}
+                    alt={item.title}
+                    className="object-fill size-full"
+                  />
+                  <motion.p
+                    className="absolute pl-10 pt-10 text-[38px] text-white z-20"
+                    variants={{
+                      initial: { opacity: 0 },
+                      exit: { opacity: 0, x: 0 },
+                      start: { opacity: 1, x: 4 },
+                    }}
+                  >
+                    Click For More
+                  </motion.p>
+                  <motion.p
+                    className="absolute bottom-20 text-[28px] pr-2 left-2 text-left text-white z-20"
+                    variants={{
+                      initial: { opacity: 0 },
+                      exit: { opacity: 0, x: 0 },
+                      start: { opacity: 1, x: 4 },
+                    }}
+                  >
+                    {item.title}
+                  </motion.p>
+                </div>
+              </ModalTrigger>
+            </motion.div>
           ))}
         </Carousel>
         <ModalBody className="relative">
@@ -109,7 +141,7 @@ const HeroRight = ({ advantage }: { advantage: Advantage[] }) => {
           </ModalContent>
         </ModalBody>
       </Modal>
-    </div>
+    </motion.div>
   );
 };
 

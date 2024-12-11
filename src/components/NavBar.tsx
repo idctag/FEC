@@ -24,7 +24,7 @@ const NavLink = ({ title, icon, href }: NavLinkProp) => {
       color="blue-gray"
       className="p-1 font-normal hover:text-blue-800"
     >
-      <Link href={`#${href}`} className="flex items-center gap-2">
+      <Link href={`#${href}`} className="flex items-end gap-3">
         {icon && !isNumber && icon.url && (
           <Image src={icon.url} alt="" width={25} height={25} />
         )}
