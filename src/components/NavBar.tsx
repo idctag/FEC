@@ -9,6 +9,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { Header, Media } from "@/payload-types";
+import LocaleSwitcher from "./LocaleSwitcher";
 type NavLinkProp = {
   href: string;
   title: string;
@@ -117,7 +118,9 @@ export function CustomNavbar({ logo, nav }: Omit<Header, "id">) {
             )}
           </IconButton>
         </div>
-        <div>LS</div>
+        <div className="flex gap-4">
+          <LocaleSwitcher />
+        </div>
       </div>
       <Collapse open={openNav}>{navList}</Collapse>
     </Navbar>
