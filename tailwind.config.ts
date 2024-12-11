@@ -13,6 +13,7 @@ export default withMT({
   theme: {
     fontFamily: {
       sans: ["Poppins", "sans-serif"],
+      outfit: ["Outfit", "serif"],
       roboto: ["Roboto", "sans-serif"],
       arvo: ["Arvo", "serif"],
     },
@@ -22,6 +23,9 @@ export default withMT({
       foreground: "",
     },
     extend: {
+      backgroundImage: {
+        "hero-1": "url('/heroback.jpg')",
+      },
       animation: {
         "infinite-scroll": "infinite-scroll 25s linear infinite",
         move: "move 5s linear infinite",
@@ -35,6 +39,9 @@ export default withMT({
           "0%": { transform: "translateX(-200px)" },
           "100%": { transform: "translateX(200px)" },
         },
+      },
+      maxWidth: {
+        bigscrn: "1440px",
       },
     },
   },

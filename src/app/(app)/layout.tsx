@@ -28,7 +28,7 @@ export default async function RootLayout({
   return (
     <html suppressHydrationWarning className="snap-y snap-proximity">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased font-outfit`}
       >
         <HeaderServer />
         {children}

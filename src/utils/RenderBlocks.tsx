@@ -1,11 +1,9 @@
-import FeatureServer from "@/blocks/feature/Server";
 import HeroServer from "@/blocks/hero/Server";
 import { Page } from "@/payload-types";
 import React, { Fragment } from "react";
 
 const blockComponents: any = {
   hero: HeroServer,
-  feature: FeatureServer,
 };
 
 export const RenderBlocks: React.FC<{
@@ -26,7 +24,7 @@ export const RenderBlocks: React.FC<{
 
             if (Block) {
               return (
-                <div key={index}>
+                <div key={index} className="w-full flex flex-col items-center">
                   <Block id={blockName} {...block} />
                 </div>
               );

@@ -114,7 +114,16 @@ export interface Page {
         | {
             title: string;
             subtitle: string;
-            image: number | Media;
+            advantage?:
+              | {
+                  title: string;
+                  sub: string;
+                  image: number | Media;
+                  id?: string | null;
+                  blockName?: string | null;
+                  blockType: 'advantage';
+                }[]
+              | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'hero';
@@ -244,7 +253,19 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               title?: T;
               subtitle?: T;
-              image?: T;
+              advantage?:
+                | T
+                | {
+                    advantage?:
+                      | T
+                      | {
+                          title?: T;
+                          sub?: T;
+                          image?: T;
+                          id?: T;
+                          blockName?: T;
+                        };
+                  };
               id?: T;
               blockName?: T;
             };

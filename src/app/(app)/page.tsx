@@ -46,7 +46,7 @@ export default async function Page() {
   }
 
   return (
-    <article className="">
+    <article className="w-full flex flex-col justify-center">
       <RenderBlocks blocks={page.layout!} />
     </article>
   );

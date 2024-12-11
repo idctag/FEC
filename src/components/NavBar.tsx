@@ -24,7 +24,7 @@ const NavLink = ({ title, icon, href }: NavLinkProp) => {
       color="blue-gray"
       className="p-1 font-normal hover:text-blue-800"
     >
-      <Link href={href} className="flex items-center gap-2">
+      <Link href={`#${href}`} className="flex items-center gap-2">
         {icon && !isNumber && icon.url && (
           <Image src={icon.url} alt="" width={25} height={25} />
         )}
@@ -60,14 +60,20 @@ export function CustomNavbar({ logo, nav }: Omit<Header, "id">) {
 
   return (
     <Navbar className="sticky top-0 z-50 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
-      <div className="flex items-center justify-between text-blue-gray-900">
+      <div className="flex items-center justify-between max-w-screen-xl mx-auto text-blue-gray-900">
         <Link
           href="#"
-          className="hidden md:block mr-4 cursor-pointer py-1.5 font-medium"
+          className="hidden md:block mr-4 cursor-pointer font-medium"
         >
           {logo && !isNumber && logo.url && (
-            <div className="relative size-8">
-              <Image src={logo.url} alt="" fill />
+            <div className="relative w-16 h-8">
+              <Image
+                priority
+                src={logo.url}
+                alt=""
+                fill
+                className="size-auto"
+              />
             </div>
           )}
         </Link>
@@ -111,7 +117,7 @@ export function CustomNavbar({ logo, nav }: Omit<Header, "id">) {
             )}
           </IconButton>
         </div>
-        <div>Locale Switcher</div>
+        <div>LS</div>
       </div>
       <Collapse open={openNav}>{navList}</Collapse>
     </Navbar>
