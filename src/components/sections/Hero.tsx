@@ -2,7 +2,7 @@
 import { Advantage, HeroProps } from "@/blocks/hero/Server";
 import { Button, Carousel } from "@material-tailwind/react";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Modal,
@@ -58,14 +58,25 @@ const HeroLeft = ({ title, subtitle }: { title: string; subtitle: string }) => {
     </div>
   );
 };
-
 const HeroRight = ({ advantage }: { advantage: Advantage[] }) => {
   const [index, setIndex] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const handleResize = () => setWindowWidth(window.innerWidth);
+      handleResize();
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, []);
   return (
     <motion.div className="h-[600px] w-full md:h-[70vh] md:w-1/2 overflow-hidden group/card">
       <Modal>
         <Carousel
           className="overflow-hidden md:max-w-[35vw]"
+          nextArrow={() => <></>}
+          prevArrow={() => <></>}
           loop
           autoplay
           navigation={({ setActiveIndex, activeIndex, length }) => (
@@ -86,12 +97,12 @@ const HeroRight = ({ advantage }: { advantage: Advantage[] }) => {
             <motion.div
               className="size-full"
               key={idx}
-              initial="initial"
+              initial={windowWidth < 720 ? "start" : "initial"}
               exit="exit"
               whileHover={"start"}
             >
-              <ModalTrigger className="size-full rounded-3xl p-0">
-                <motion.div className="group-hover/card:block inset-0 hidden absolute w-full h-full overflow-hidden bg-black/40 z-10 transition duration-500" />
+              <ModalTrigger className="size-full md:rounded-3xl p-0">
+                <motion.div className="group-hover/card:block inset-0 md:hidden absolute w-full h-full overflow-hidden bg-black/40 z-10 transition duration-500" />
                 <div
                   onClick={() => setIndex(idx)}
                   className="flex h-full w-full relative"
@@ -100,7 +111,7 @@ const HeroRight = ({ advantage }: { advantage: Advantage[] }) => {
                     variants={{
                       initial: { scale: 1 },
                       exit: { scale: 1 },
-                      start: { scale: 1.05 },
+                      start: { scale: 1.1 },
                     }}
                     transition={{ duration: 0.3, ease: "easeOut" }}
                     src={item.image.url!}
@@ -108,7 +119,7 @@ const HeroRight = ({ advantage }: { advantage: Advantage[] }) => {
                     className="object-fill size-full"
                   />
                   <motion.p
-                    className="absolute pl-10 pt-10 text-[38px] text-white z-20"
+                    className="absolute pl-4 pt-10 text-[38px] text-white z-20"
                     variants={{
                       initial: { opacity: 0 },
                       exit: { opacity: 0, x: 0 },

@@ -13,9 +13,7 @@ export default withMT({
   theme: {
     fontFamily: {
       sans: ["Poppins", "sans-serif"],
-      outfit: ["Outfit", "serif"],
-      roboto: ["Roboto", "sans-serif"],
-      arvo: ["Arvo", "serif"],
+      istok: ["Istok Web", "sans-serif"],
     },
     colors: {
       ...color,
