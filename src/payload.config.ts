@@ -2,6 +2,7 @@
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { payloadCloudPlugin } from "@payloadcms/payload-cloud";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { uploadthingStorage } from "@payloadcms/storage-uploadthing";
 import path from "path";
 import { buildConfig } from "payload";
 import { fileURLToPath } from "url";
@@ -15,7 +16,6 @@ import { Footer } from "./globals/Footer";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
-console.log(process.env.PAYLOAD_SECRET);
 
 export default buildConfig({
   admin: {
@@ -52,6 +52,14 @@ export default buildConfig({
   sharp,
   plugins: [
     payloadCloudPlugin(),
-    // storage-adapter-placeholder
+    uploadthingStorage({
+      collections: {
+        media: true,
+      },
+      options: {
+        token: process.env.UPLOADTHING_TOKEN,
+        acl: "public-read",
+      },
+    }),
   ],
 });
