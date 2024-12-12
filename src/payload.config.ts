@@ -6,7 +6,6 @@ import path from "path";
 import { buildConfig } from "payload";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
-import "dotenv/config";
 
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
@@ -16,6 +15,7 @@ import { Footer } from "./globals/Footer";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
+console.log(process.env.PAYLOAD_SECRET);
 
 export default buildConfig({
   admin: {
