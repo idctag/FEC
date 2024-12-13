@@ -15,6 +15,10 @@ const FooterServer = async () => {
       logo={footer.logo}
       nav={footer.nav}
       title={footer.title}
+      email={footer.email}
+      phone={footer.phone}
+      qr={footer.qr}
+      scroll={footer.scroll}
     />
   );
 };

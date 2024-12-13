@@ -11,10 +11,18 @@ export type HeroProps = {
   title: string;
   subtitle: string;
   advantage: Advantage[];
+  scroll: string;
 };
 
-const HeroServer = ({ title, subtitle, advantage }: HeroProps) => {
-  return <Hero title={title} subtitle={subtitle} advantage={advantage} />;
+const HeroServer = ({ title, subtitle, advantage, scroll }: HeroProps) => {
+  return (
+    <Hero
+      title={title}
+      subtitle={subtitle}
+      advantage={advantage}
+      scroll={scroll}
+    />
+  );
 };
 
 export default HeroServer;

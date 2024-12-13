@@ -156,9 +156,12 @@ const HeroRight = ({ advantage }: { advantage: Advantage[] }) => {
   );
 };
 
-const Hero = ({ title, subtitle, advantage }: HeroProps) => {
+const Hero = ({ title, subtitle, advantage, scroll }: HeroProps) => {
   return (
-    <div className="flex flex-col md:flex-row gap-24 max-w-bigscrn w-full h-full items-center md:h-[80vh]">
+    <div
+      id={scroll}
+      className="flex flex-col md:flex-row gap-24 max-w-bigscrn w-full h-full items-center md:h-[80vh]"
+    >
       <HeroLeft title={title} subtitle={subtitle} />
       <HeroRight advantage={advantage} />
     </div>

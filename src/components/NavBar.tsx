@@ -1,11 +1,6 @@
 "use client";
 import React from "react";
-import {
-  Navbar,
-  Typography,
-  IconButton,
-  Collapse,
-} from "@material-tailwind/react";
+import { Navbar, IconButton, Collapse } from "@material-tailwind/react";
 import Link from "next/link";
 import Image from "next/image";
 import { Header, Media } from "@/payload-types";
@@ -19,19 +14,20 @@ type NavLinkProp = {
 const NavLink = ({ title, icon, href }: NavLinkProp) => {
   const isNumber = typeof icon === "number";
   return (
-    <Typography
-      as="li"
-      variant="small"
-      color="blue-gray"
-      className="p-1 font-normal hover:text-blue-800"
+    <button
+      className="p-1 hover:underline font-normal flex items-end gap-3 hover:text-blue-800"
+      onClick={() => {
+        const element = document.getElementById(href);
+        element?.scrollIntoView({
+          behavior: "smooth",
+        });
+      }}
     >
-      <Link href={`#${href}`} className="flex items-end gap-3">
-        {icon && !isNumber && icon.url && (
-          <Image src={icon.url} alt="" width={25} height={25} />
-        )}
-        {title}
-      </Link>
-    </Typography>
+      {icon && !isNumber && icon.url && (
+        <Image src={icon.url} alt="" width={25} height={25} />
+      )}
+      <p>{title}</p>
+    </button>
   );
 };
 

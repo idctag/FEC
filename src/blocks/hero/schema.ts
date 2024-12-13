@@ -38,6 +38,11 @@ export const Hero: Block = {
       localized: true,
     },
     {
+      name: "scroll",
+      label: "Scroll",
+      type: "text",
+    },
+    {
       name: "subtitle",
       label: "Sub title",
       type: "text",

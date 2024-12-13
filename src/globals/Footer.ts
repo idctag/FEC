@@ -17,6 +17,27 @@ export const Footer: GlobalConfig = {
       required: true,
     },
     {
+      name: "scroll",
+      label: "Scroll",
+      type: "text",
+    },
+    {
+      name: "qr",
+      label: "QR",
+      type: "upload",
+      relationTo: "media",
+    },
+    {
+      name: "email",
+      label: "Email",
+      type: "text",
+    },
+    {
+      name: "phone",
+      label: "Phone",
+      type: "text",
+    },
+    {
       name: "nav",
       label: "Navigation",
       type: "array",

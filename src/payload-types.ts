@@ -114,6 +114,7 @@ export interface Page {
     | (
         | {
             title: string;
+            scroll?: string | null;
             subtitle: string;
             advantage?:
               | {
@@ -254,6 +255,7 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               title?: T;
+              scroll?: T;
               subtitle?: T;
               advantage?:
                 | T
@@ -343,6 +345,10 @@ export interface Footer {
   id: number;
   title: string;
   logo: number | Media;
+  scroll?: string | null;
+  qr?: (number | null) | Media;
+  email?: string | null;
+  phone?: string | null;
   nav: {
     label: string;
     link: string;
@@ -377,6 +383,10 @@ export interface HeaderSelect<T extends boolean = true> {
 export interface FooterSelect<T extends boolean = true> {
   title?: T;
   logo?: T;
+  scroll?: T;
+  qr?: T;
+  email?: T;
+  phone?: T;
   nav?:
     | T
     | {

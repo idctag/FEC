@@ -1,46 +1,75 @@
 "use client";
 import { Footer } from "@/payload-types";
-import { Typography } from "@material-tailwind/react";
 import Image from "next/image";
+import { FiPhone } from "react-icons/fi";
+import { IoMailOutline } from "react-icons/io5";
 
 const currentYear = new Date().getFullYear();
 
 export function SimpleFooter({
   copyRight,
-  logo,
   nav,
   title,
+  email,
+  phone,
+  qr,
+  scroll,
 }: Omit<Footer, "id">) {
-  const isNumber = typeof logo === "number";
+  const isNumber = typeof qr === "number";
   return (
-    <footer className="flex justify-center w-full bg-white p-8">
-      <div className="max-w-screen-2xl w-full">
-        <div className="flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 bg-white text-center md:justify-between">
-          <div className="flex gap-4 items-center text-2xl">
-            {logo && !isNumber && logo.url && (
-              <Image src={logo.url} alt="logo-ct" width={60} height={60} />
-            )}
-            {title}
+    <footer
+      id={scroll || ""}
+      className="flex w-full mt-12 justify-center md:mb-4"
+    >
+      <div className="flex flex-col w-full max-w-screen-2xl text-white md:rounded-3xl bg-[#1E1E1E] py-8 px-12">
+        <div className="flex flex-col md:flex-row justify-between w-full">
+          {/* CONTACT */}
+          <div className="flex flex-col gap-4">
+            <p className="text-[32px]">{title}</p>
+
+            <div className="flex flex-col gap-8 pt-8 text-[24px]">
+              <div className="flex gap-4 items-center">
+                <FiPhone />
+                <p>{email}</p>
+              </div>
+              <div className="flex gap-4 items-center">
+                <IoMailOutline />
+                <p>{phone}</p>
+              </div>
+            </div>
           </div>
-          <ul className="flex flex-wrap items-center gap-y-2 gap-x-8">
-            {nav.map((item, idx) => (
-              <li key={idx}>
-                <Typography
-                  as="a"
-                  href={`#${item.link}`}
-                  color="blue-gray"
-                  className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
-                >
-                  {item.label}
-                </Typography>
-              </li>
+          {/* LINKS */}
+          <div className="flex flex-row flex-wrap md:flex-col gap-4 my-8 md:my-0 h-full justify-evenly text-[24px]">
+            {nav.map((link, idx) => (
+              <button
+                className="hover:underline"
+                key={`#${idx}`}
+                onClick={() => {
+                  const element = document.getElementById(link.link);
+                  element?.scrollIntoView({
+                    behavior: "smooth",
+                  });
+                }}
+              >
+                {link.label}
+              </button>
             ))}
-          </ul>
+          </div>
+          {/* APP */}
+          <div className="flex flex-col items-center gap-4">
+            <p className="text-[24px]">Download Our App</p>
+            {qr && !isNumber && qr.url && (
+              <Image
+                src={qr.url!}
+                alt=""
+                className="bg-white rounded-xl"
+                width={200}
+                height={200}
+              />
+            )}
+          </div>
         </div>
-        <hr className="my-8 border-blue-gray-50" />
-        <Typography className="text-center text-gray-500 font-normal">
-          &copy; {currentYear} {` ${copyRight}`}
-        </Typography>
+        <div className="flex w-full text-gray-300 justify-center">{`${currentYear} ${copyRight}`}</div>
       </div>
     </footer>
   );
