@@ -131,15 +131,18 @@ export interface Page {
             blockType: 'hero';
           }
         | {
-            title: string;
-            color?: string | null;
-            sub: string;
-            description?: string | null;
-            image: number | Media;
-            placement?: ('left' | 'right') | null;
+            sections: {
+              title: string;
+              sub: string;
+              date: string;
+              icon: number | Media;
+              id?: string | null;
+              blockName?: string | null;
+              blockType: 'timelineSection';
+            }[];
             id?: string | null;
             blockName?: string | null;
-            blockType: 'feature';
+            blockType: 'timeline';
           }
       )[]
     | null;
@@ -273,15 +276,23 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        feature?:
+        timeline?:
           | T
           | {
-              title?: T;
-              color?: T;
-              sub?: T;
-              description?: T;
-              image?: T;
-              placement?: T;
+              sections?:
+                | T
+                | {
+                    timelineSection?:
+                      | T
+                      | {
+                          title?: T;
+                          sub?: T;
+                          date?: T;
+                          icon?: T;
+                          id?: T;
+                          blockName?: T;
+                        };
+                  };
               id?: T;
               blockName?: T;
             };

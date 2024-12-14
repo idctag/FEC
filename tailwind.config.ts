@@ -2,7 +2,6 @@ import type { Config } from "tailwindcss";
 import withMT from "@material-tailwind/react/utils/withMT";
 import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
 import svgToDataUri from "mini-svg-data-uri";
-import color from "tailwindcss/colors";
 
 export default withMT({
   content: [
@@ -16,9 +15,7 @@ export default withMT({
       istok: ["Istok Web", "sans-serif"],
     },
     colors: {
-      ...color,
       background: "#f8fafc",
-      foreground: "",
     },
     extend: {
       backgroundImage: {
@@ -45,7 +42,7 @@ export default withMT({
   },
   plugins: [
     addVariablesForColors,
-    function ({ matchUtilities, theme }: any) {
+    function({ matchUtilities, theme }: any) {
       matchUtilities(
         {
           "bg-grid": (value: any) => ({

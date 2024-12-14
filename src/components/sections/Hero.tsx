@@ -71,7 +71,7 @@ const HeroRight = ({ advantage }: { advantage: Advantage[] }) => {
     }
   }, []);
   return (
-    <motion.div className="h-[600px] w-full md:h-[70vh] md:w-1/2 overflow-hidden group/card">
+    <motion.div className="h-[600px] w-full md:h-[70vh] md:w-1/2 overflow-hidden flex justify-center group/card">
       <Modal>
         <Carousel
           className="overflow-hidden md:max-w-[35vw]"

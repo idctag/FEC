@@ -1,4 +1,70 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@100..900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.vertical-timeline::before {
+  /* this is the vertical line */
+
+  background: white !important;
+}
+
+.vertical-timeline::after {
+  /* this is the vertical line */
+
+  background: white !important;
+}
+
+.vertical-timeline-element-content {
+  box-shadow:
+    0 0.25rem 0.5em 0 rgba(0, 0, 0, 0.25),
+    0 0.4em 1.25em 0 rgba(0, 0, 0, 0.15) !important;
+  padding: 2em 3em !important;
+}
+
+.timeline-date {
+  color: white;
+  font-size: 40px !important;
+}
+
+#vertical-timeline-element-title {
+  font-size: 30px !important;
+}
+
+#vertical-timeline-element-subtitle {
+  font-size: 18px;
+  color: gray;
+}
+
+@media screen and (max-width: 768px) {
+  .vertical-timeline-element-content {
+    padding: 1em !important;
+  }
+
+  .timeline-date {
+    font-size: 24px !important;
+  }
+
+  #vertical-timeline-element-title {
+    font-size: 20px !important;
+  }
+
+  #vertical-timeline-element-subtitle {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .timeline-date {
+    font-size: 18px !important;
+  }
+
+  #vertical-timeline-element-title {
+    font-size: 16px !important;
+  }
+
+  #vertical-timeline-element-subtitle {
+    font-size: 14px;
+  }
+}

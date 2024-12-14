@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { Navbar, IconButton, Collapse } from "@material-tailwind/react";
-import Link from "next/link";
 import Image from "next/image";
 import { Header, Media } from "@/payload-types";
 import LocaleSwitcher from "./LocaleSwitcher";
@@ -58,22 +57,28 @@ export function CustomNavbar({ logo, nav }: Omit<Header, "id">) {
   return (
     <Navbar className="sticky top-0 z-50 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
       <div className="flex items-center justify-between max-w-screen-xl mx-auto text-blue-gray-900">
-        <Link
-          href="#"
+        <button
+          onClick={() => {
+            const element = document.getElementById("hero");
+            element?.scrollIntoView({
+              behavior: "smooth",
+            });
+          }}
           className="hidden md:block mr-4 cursor-pointer font-medium"
         >
           {logo && !isNumber && logo.url && (
-            <div className="relative w-16 h-8">
+            <div className="relative w-24 h-8">
               <Image
                 priority
                 src={logo.url}
                 alt=""
+                sizes="auto"
                 fill
                 className="size-auto"
               />
             </div>
           )}
-        </Link>
+        </button>
         <div className="flex items-center gap-4">
           <div className="mr-4 hidden lg:block">{navList}</div>
           <IconButton
