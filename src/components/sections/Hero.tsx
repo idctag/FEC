@@ -1,15 +1,11 @@
 "use client";
 import { Advantage, HeroProps } from "@/blocks/hero/Server";
-import { Button, Carousel } from "@material-tailwind/react";
+import { Button } from "@material-tailwind/react";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import {
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalTrigger,
-} from "../ui/animated-modal";
+import React, { useCallback } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import Image from "next/image";
+import { RiArrowLeftWideLine, RiArrowRightWideLine } from "react-icons/ri";
 
 const HeroLeft = ({ title, subtitle }: { title: string; subtitle: string }) => {
   const titleParts = title.split(/(\[.*?\])/);
@@ -59,100 +55,39 @@ const HeroLeft = ({ title, subtitle }: { title: string; subtitle: string }) => {
   );
 };
 const HeroRight = ({ advantage }: { advantage: Advantage[] }) => {
-  const [index, setIndex] = useState(0);
-  const [windowWidth, setWindowWidth] = useState(0);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const handleResize = () => setWindowWidth(window.innerWidth);
-      handleResize();
-      window.addEventListener("resize", handleResize);
-      return () => window.removeEventListener("resize", handleResize);
-    }
-  }, []);
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
   return (
-    <motion.div className="h-[600px] w-full md:h-[70vh] md:w-1/2 overflow-hidden flex justify-center group/card">
-      <Modal>
-        <Carousel
-          className="overflow-hidden md:max-w-[35vw]"
-          nextArrow={() => <></>}
-          prevArrow={() => <></>}
-          loop
-          autoplay
-          navigation={({ setActiveIndex, activeIndex, length }) => (
-            <div className="absolute bottom-4 left-2/4 z-10 flex -translate-x-2/4 gap-2">
-              {new Array(length).fill("").map((_, i) => (
-                <span
-                  key={i}
-                  className={`rounded-2xl block h-1 cursor-pointer transition-all content-[''] ${
-                    activeIndex === i ? "w-8 bg-white" : "w-4 bg-white/50"
-                  }`}
-                  onClick={() => setActiveIndex(i)}
-                />
-              ))}
+    <div className="overflow-hidden relative size-full md:rounded-3xl h-[70vh] md:h-[80%] max-w-[500px] md:w-1/2">
+      <div className="flex size-full" ref={emblaRef}>
+        <div className="flex size-full">
+          {advantage.map((adv, idx) => (
+            <div key={idx} className="flex flex-none size-full">
+              <div className="absolute flex size-full">
+                <Image src={adv.image.url!} alt="" sizes="auto" priority fill />
+              </div>
             </div>
-          )}
-        >
-          {advantage.map((item, idx) => (
-            <motion.div
-              className="size-full"
-              key={idx}
-              initial={windowWidth < 720 ? "start" : "initial"}
-              exit="exit"
-              whileHover={"start"}
-            >
-              <ModalTrigger className="size-full md:rounded-3xl p-0">
-                <motion.div className="group-hover/card:block inset-0 md:hidden absolute w-full h-full overflow-hidden bg-black/40 z-10 transition duration-500" />
-                <div
-                  onClick={() => setIndex(idx)}
-                  className="flex h-full w-full relative"
-                >
-                  <motion.img
-                    variants={{
-                      initial: { scale: 1 },
-                      exit: { scale: 1 },
-                      start: { scale: 1.1 },
-                    }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                    src={item.image.url!}
-                    alt={item.title}
-                    className="object-fill size-full"
-                  />
-                  <motion.p
-                    className="absolute pl-4 pt-10 text-[38px] text-white z-20"
-                    variants={{
-                      initial: { opacity: 0 },
-                      exit: { opacity: 0, x: 0 },
-                      start: { opacity: 1, x: 4 },
-                    }}
-                  >
-                    Click For More
-                  </motion.p>
-                  <motion.p
-                    className="absolute bottom-20 text-[28px] pr-2 left-2 text-left text-white z-20"
-                    variants={{
-                      initial: { opacity: 0 },
-                      exit: { opacity: 0, x: 0 },
-                      start: { opacity: 1, x: 4 },
-                    }}
-                  >
-                    {item.title}
-                  </motion.p>
-                </div>
-              </ModalTrigger>
-            </motion.div>
           ))}
-        </Carousel>
-        <ModalBody className="relative">
-          <ModalContent className="size-full gap-14 justify-center bg-gradient-to-b text-white from-indigo-700 to-indigo-700/80">
-            <p className="text-2xl md:text-4xl font-semibold">
-              {advantage[index].title}
-            </p>
-            <p className="text-[20px] md:text-[24px]">{advantage[index].sub}</p>
-          </ModalContent>
-        </ModalBody>
-      </Modal>
-    </motion.div>
+        </div>
+      </div>
+      <div className="flex absolute inset-0 items-center w-full max-w-[500px]">
+        <div className="px-4 max-w-[500px] w-full flex justify-between">
+          <button onClick={scrollPrev}>
+            <RiArrowLeftWideLine size={40} className="embla__button" />
+          </button>
+          <button onClick={scrollNext}>
+            <RiArrowRightWideLine size={40} className="embla__button" />
+          </button>
+        </div>
+      </div>
+    </div>
   );
 };
 
@@ -160,7 +95,7 @@ const Hero = ({ title, subtitle, advantage, scroll }: HeroProps) => {
   return (
     <div
       id={scroll}
-      className="flex flex-col md:flex-row gap-24 max-w-bigscrn w-full h-full items-center md:h-[80vh]"
+      className="flex flex-col md:flex-row gap-24 max-w-bigscrn size-full items-center md:h-[80vh]"
     >
       <HeroLeft title={title} subtitle={subtitle} />
       <HeroRight advantage={advantage} />
