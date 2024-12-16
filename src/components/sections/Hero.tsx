@@ -1,6 +1,12 @@
 "use client";
 import { Advantage, HeroProps } from "@/blocks/hero/Server";
-import { Button, Carousel } from "@material-tailwind/react";
+import {
+  Button,
+  Carousel,
+  Dialog,
+  DialogBody,
+  DialogHeader,
+} from "@material-tailwind/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -53,29 +59,51 @@ const HeroLeft = ({ title, subtitle }: { title: string; subtitle: string }) => {
   );
 };
 const HeroRight = ({ advantage }: { advantage: Advantage[] }) => {
+  const [open, setOpen] = React.useState(false);
+  const [index, setIndex] = React.useState(0);
+
+  const handleOpen = () => setOpen(!open);
   return (
-    <Carousel
-      className="flex md:w-1/2 h-[60vh] max-w-[550px] md:h-[80%] md:rounded-3xl"
-      loop
-      navigation={({ setActiveIndex, activeIndex, length }) => (
-        <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
-          {new Array(length).fill("").map((_, i) => (
-            <span
-              key={i}
-              className={`block h-1 cursor-pointer rounded-2xl transition-all content-[''] ${activeIndex === i ? "w-8 bg-white" : "w-4 bg-white/50"
-                }`}
-              onClick={() => setActiveIndex(i)}
-            />
-          ))}
-        </div>
-      )}
-    >
-      {advantage.map((item, idx) => (
-        <div key={idx} className="relative size-full">
-          <Image src={item.image.url!} priority alt="" fill sizes="auto" />
-        </div>
-      ))}
-    </Carousel>
+    <div className="flex md:w-1/2 h-[60vh] max-w-[550px] md:h-[80%]">
+      <Carousel
+        className="md:rounded-3xl"
+        loop
+        navigation={({ setActiveIndex, activeIndex, length }) => (
+          <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
+            {new Array(length).fill("").map((_, i) => (
+              <span
+                key={i}
+                className={`block h-1 cursor-pointer rounded-2xl transition-all content-[''] ${activeIndex === i ? "w-8 bg-white" : "w-4 bg-white/50"
+                  }`}
+                onClick={() => setActiveIndex(i)}
+              />
+            ))}
+          </div>
+        )}
+      >
+        {advantage.map((item, idx) => (
+          <div
+            key={idx}
+            onClick={() => {
+              setIndex(idx);
+              handleOpen();
+            }}
+            className="relative size-full"
+          >
+            <Image src={item.image.url!} priority alt="" fill sizes="auto" />
+            <div className="absolute inset-0 grid h-full w-full place-items-center hover:bg-black/60 hover:cursor-pointer"></div>
+          </div>
+        ))}
+      </Carousel>
+      <Dialog className="p-12 text-center" open={open} handler={handleOpen}>
+        <DialogHeader>
+          <p className="text-[40px]">{advantage[index].title}</p>
+        </DialogHeader>
+        <DialogBody>
+          <p className="text-[30px]">{advantage[index].sub}</p>
+        </DialogBody>
+      </Dialog>
+    </div>
   );
 };
 
