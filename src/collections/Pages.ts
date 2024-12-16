@@ -1,4 +1,5 @@
 import { Hero } from "@/blocks/hero/schema";
+import { Logos } from "@/blocks/logo/schema";
 import { TimeLine } from "@/blocks/timeline/schema";
 import { CollectionConfig } from "payload";
 
@@ -24,7 +25,7 @@ export const Pages: CollectionConfig = {
       name: "layout",
       label: "Layout",
       type: "blocks",
-      blocks: [Hero, TimeLine],
+      blocks: [Hero, TimeLine, Logos],
     },
   ],
 };

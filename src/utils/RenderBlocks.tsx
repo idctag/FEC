@@ -1,4 +1,5 @@
 import HeroServer from "@/blocks/hero/Server";
+import LogosServer from "@/blocks/logo/Server";
 import TimeLineServer from "@/blocks/timeline/Server";
 import { Page } from "@/payload-types";
 import React, { Fragment } from "react";
@@ -6,6 +7,7 @@ import React, { Fragment } from "react";
 const blockComponents: any = {
   hero: HeroServer,
   timeline: TimeLineServer,
+  logos: LogosServer,
 };
 
 export const RenderBlocks: React.FC<{
