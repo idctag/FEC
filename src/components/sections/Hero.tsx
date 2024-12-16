@@ -1,11 +1,9 @@
 "use client";
 import { Advantage, HeroProps } from "@/blocks/hero/Server";
-import { Button } from "@material-tailwind/react";
-import Link from "next/link";
-import React, { useCallback } from "react";
-import useEmblaCarousel from "embla-carousel-react";
+import { Button, Carousel } from "@material-tailwind/react";
 import Image from "next/image";
-import { RiArrowLeftWideLine, RiArrowRightWideLine } from "react-icons/ri";
+import Link from "next/link";
+import React from "react";
 
 const HeroLeft = ({ title, subtitle }: { title: string; subtitle: string }) => {
   const titleParts = title.split(/(\[.*?\])/);
@@ -55,39 +53,29 @@ const HeroLeft = ({ title, subtitle }: { title: string; subtitle: string }) => {
   );
 };
 const HeroRight = ({ advantage }: { advantage: Advantage[] }) => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
-  const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev();
-  }, [emblaApi]);
-
-  const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext();
-  }, [emblaApi]);
-
   return (
-    <div className="overflow-hidden relative size-full md:rounded-3xl h-[70vh] md:h-[80%] max-w-[500px] md:w-1/2">
-      <div className="flex size-full" ref={emblaRef}>
-        <div className="flex size-full">
-          {advantage.map((adv, idx) => (
-            <div key={idx} className="flex flex-none size-full">
-              <div className="absolute flex size-full">
-                <Image src={adv.image.url!} alt="" sizes="auto" priority fill />
-              </div>
-            </div>
+    <Carousel
+      className="flex md:w-1/2 h-[60vh] max-w-[550px] md:h-[80%] md:rounded-3xl"
+      loop
+      navigation={({ setActiveIndex, activeIndex, length }) => (
+        <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
+          {new Array(length).fill("").map((_, i) => (
+            <span
+              key={i}
+              className={`block h-1 cursor-pointer rounded-2xl transition-all content-[''] ${activeIndex === i ? "w-8 bg-white" : "w-4 bg-white/50"
+                }`}
+              onClick={() => setActiveIndex(i)}
+            />
           ))}
         </div>
-      </div>
-      <div className="flex absolute inset-0 items-center w-full max-w-[500px]">
-        <div className="px-4 max-w-[500px] w-full flex justify-between">
-          <button onClick={scrollPrev}>
-            <RiArrowLeftWideLine size={40} className="embla__button" />
-          </button>
-          <button onClick={scrollNext}>
-            <RiArrowRightWideLine size={40} className="embla__button" />
-          </button>
+      )}
+    >
+      {advantage.map((item, idx) => (
+        <div key={idx} className="relative size-full">
+          <Image src={item.image.url!} priority alt="" fill sizes="auto" />
         </div>
-      </div>
-    </div>
+      ))}
+    </Carousel>
   );
 };
 
