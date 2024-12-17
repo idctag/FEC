@@ -1,8 +1,9 @@
-import { MigrateUpArgs, MigrateDownArgs, sql } from "@payloadcms/db-postgres";
+import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
 
-export async function up({ payload }: MigrateUpArgs): Promise<void> {
-  await payload.db.drizzle.execute(sql`
-   CREATE TABLE IF NOT EXISTS "users" (
+export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
+  await db.execute(sql`
+   CREATE TYPE "public"."_locales" AS ENUM('en', 'mn');
+  CREATE TABLE IF NOT EXISTS "users" (
   	"id" serial PRIMARY KEY NOT NULL,
   	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
   	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
@@ -17,7 +18,8 @@ export async function up({ payload }: MigrateUpArgs): Promise<void> {
   
   CREATE TABLE IF NOT EXISTS "media" (
   	"id" serial PRIMARY KEY NOT NULL,
-  	"alt" varchar NOT NULL,
+  	"alt" varchar DEFAULT '' NOT NULL,
+  	"_key" varchar,
   	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
   	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
   	"url" varchar,
@@ -29,6 +31,84 @@ export async function up({ payload }: MigrateUpArgs): Promise<void> {
   	"height" numeric,
   	"focal_x" numeric,
   	"focal_y" numeric
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_advantage" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"image_id" integer NOT NULL,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_advantage_locales" (
+  	"title" varchar NOT NULL,
+  	"sub" varchar NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"_locale" "_locales" NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	CONSTRAINT "pages_blocks_advantage_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_hero" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"scroll" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_hero_locales" (
+  	"title" varchar NOT NULL,
+  	"subtitle" varchar NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"_locale" "_locales" NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	CONSTRAINT "pages_blocks_hero_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_timeline_section" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"date" varchar NOT NULL,
+  	"icon_id" integer NOT NULL,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_timeline_section_locales" (
+  	"title" varchar NOT NULL,
+  	"sub" varchar NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"_locale" "_locales" NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	CONSTRAINT "pages_blocks_timeline_section_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_timeline" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_logos_slider" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"logo_id" integer NOT NULL
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_logos" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"block_name" varchar
   );
   
   CREATE TABLE IF NOT EXISTS "pages" (
@@ -108,10 +188,86 @@ export async function up({ payload }: MigrateUpArgs): Promise<void> {
   	"id" serial PRIMARY KEY NOT NULL,
   	"title" varchar NOT NULL,
   	"logo_id" integer NOT NULL,
+  	"scroll" varchar,
+  	"qr_id" integer,
+  	"email" varchar,
+  	"phone" varchar,
   	"copy_right" varchar NOT NULL,
   	"updated_at" timestamp(3) with time zone,
   	"created_at" timestamp(3) with time zone
   );
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_advantage" ADD CONSTRAINT "pages_blocks_advantage_image_id_media_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_advantage" ADD CONSTRAINT "pages_blocks_advantage_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_advantage_locales" ADD CONSTRAINT "pages_blocks_advantage_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_advantage"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_hero" ADD CONSTRAINT "pages_blocks_hero_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_hero_locales" ADD CONSTRAINT "pages_blocks_hero_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_hero"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_timeline_section" ADD CONSTRAINT "pages_blocks_timeline_section_icon_id_media_id_fk" FOREIGN KEY ("icon_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_timeline_section" ADD CONSTRAINT "pages_blocks_timeline_section_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_timeline_section_locales" ADD CONSTRAINT "pages_blocks_timeline_section_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_timeline_section"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_timeline" ADD CONSTRAINT "pages_blocks_timeline_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_logos_slider" ADD CONSTRAINT "pages_blocks_logos_slider_logo_id_media_id_fk" FOREIGN KEY ("logo_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_logos_slider" ADD CONSTRAINT "pages_blocks_logos_slider_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_logos"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pages_blocks_logos" ADD CONSTRAINT "pages_blocks_logos_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
   
   DO $$ BEGIN
    ALTER TABLE "payload_locked_documents_rels" ADD CONSTRAINT "payload_locked_documents_rels_parent_fk" FOREIGN KEY ("parent_id") REFERENCES "public"."payload_locked_documents"("id") ON DELETE cascade ON UPDATE no action;
@@ -179,12 +335,38 @@ export async function up({ payload }: MigrateUpArgs): Promise<void> {
    WHEN duplicate_object THEN null;
   END $$;
   
+  DO $$ BEGIN
+   ALTER TABLE "footer" ADD CONSTRAINT "footer_qr_id_media_id_fk" FOREIGN KEY ("qr_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
   CREATE INDEX IF NOT EXISTS "users_updated_at_idx" ON "users" USING btree ("updated_at");
   CREATE INDEX IF NOT EXISTS "users_created_at_idx" ON "users" USING btree ("created_at");
   CREATE UNIQUE INDEX IF NOT EXISTS "users_email_idx" ON "users" USING btree ("email");
   CREATE INDEX IF NOT EXISTS "media_updated_at_idx" ON "media" USING btree ("updated_at");
   CREATE INDEX IF NOT EXISTS "media_created_at_idx" ON "media" USING btree ("created_at");
   CREATE UNIQUE INDEX IF NOT EXISTS "media_filename_idx" ON "media" USING btree ("filename");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_advantage_order_idx" ON "pages_blocks_advantage" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_advantage_parent_id_idx" ON "pages_blocks_advantage" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_advantage_path_idx" ON "pages_blocks_advantage" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_advantage_image_idx" ON "pages_blocks_advantage" USING btree ("image_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_hero_order_idx" ON "pages_blocks_hero" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_hero_parent_id_idx" ON "pages_blocks_hero" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_hero_path_idx" ON "pages_blocks_hero" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_timeline_section_order_idx" ON "pages_blocks_timeline_section" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_timeline_section_parent_id_idx" ON "pages_blocks_timeline_section" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_timeline_section_path_idx" ON "pages_blocks_timeline_section" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_timeline_section_icon_idx" ON "pages_blocks_timeline_section" USING btree ("icon_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_timeline_order_idx" ON "pages_blocks_timeline" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_timeline_parent_id_idx" ON "pages_blocks_timeline" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_timeline_path_idx" ON "pages_blocks_timeline" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_logos_slider_order_idx" ON "pages_blocks_logos_slider" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_logos_slider_parent_id_idx" ON "pages_blocks_logos_slider" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_logos_slider_logo_idx" ON "pages_blocks_logos_slider" USING btree ("logo_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_logos_order_idx" ON "pages_blocks_logos" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_logos_parent_id_idx" ON "pages_blocks_logos" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_logos_path_idx" ON "pages_blocks_logos" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "pages_updated_at_idx" ON "pages" USING btree ("updated_at");
   CREATE INDEX IF NOT EXISTS "pages_created_at_idx" ON "pages" USING btree ("created_at");
   CREATE INDEX IF NOT EXISTS "payload_locked_documents_global_slug_idx" ON "payload_locked_documents" USING btree ("global_slug");
@@ -211,13 +393,23 @@ export async function up({ payload }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "header_logo_idx" ON "header" USING btree ("logo_id");
   CREATE INDEX IF NOT EXISTS "footer_nav_order_idx" ON "footer_nav" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "footer_nav_parent_id_idx" ON "footer_nav" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "footer_logo_idx" ON "footer" USING btree ("logo_id");`);
+  CREATE INDEX IF NOT EXISTS "footer_logo_idx" ON "footer" USING btree ("logo_id");
+  CREATE INDEX IF NOT EXISTS "footer_qr_idx" ON "footer" USING btree ("qr_id");`)
 }
 
-export async function down({ payload }: MigrateDownArgs): Promise<void> {
-  await payload.db.drizzle.execute(sql`
+export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
+  await db.execute(sql`
    DROP TABLE "users" CASCADE;
   DROP TABLE "media" CASCADE;
+  DROP TABLE "pages_blocks_advantage" CASCADE;
+  DROP TABLE "pages_blocks_advantage_locales" CASCADE;
+  DROP TABLE "pages_blocks_hero" CASCADE;
+  DROP TABLE "pages_blocks_hero_locales" CASCADE;
+  DROP TABLE "pages_blocks_timeline_section" CASCADE;
+  DROP TABLE "pages_blocks_timeline_section_locales" CASCADE;
+  DROP TABLE "pages_blocks_timeline" CASCADE;
+  DROP TABLE "pages_blocks_logos_slider" CASCADE;
+  DROP TABLE "pages_blocks_logos" CASCADE;
   DROP TABLE "pages" CASCADE;
   DROP TABLE "payload_locked_documents" CASCADE;
   DROP TABLE "payload_locked_documents_rels" CASCADE;
@@ -227,5 +419,6 @@ export async function down({ payload }: MigrateDownArgs): Promise<void> {
   DROP TABLE "header_nav" CASCADE;
   DROP TABLE "header" CASCADE;
   DROP TABLE "footer_nav" CASCADE;
-  DROP TABLE "footer" CASCADE;`);
+  DROP TABLE "footer" CASCADE;
+  DROP TYPE "public"."_locales";`)
 }

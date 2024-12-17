@@ -71,7 +71,7 @@ const HeroRight = ({ advantage }: { advantage: Advantage[] }) => {
   };
   const handleOpen = () => setOpen(!open);
   return (
-    <div className="flex md:w-1/2 h-[60vh] w-full max-w-[550px] md:h-[80%]">
+    <div className="flex md:w-1/2 h-[60vh] max-h-[700px] w-full max-w-[550px] md:h-[80%]">
       <Carousel
         autoplay
         className="md:rounded-3xl"
@@ -171,7 +171,7 @@ const HeroRight = ({ advantage }: { advantage: Advantage[] }) => {
         handler={handleOpen}
       >
         <DialogHeader>
-          <p className="text-[20px] md:text-[30px]">{advantage[index].title}</p>
+          <p className="text-[22px] md:text-[30px]">{advantage[index].title}</p>
         </DialogHeader>
         <DialogBody>
           <p className="text-[16px] md:text-[20px]">{advantage[index].sub}</p>

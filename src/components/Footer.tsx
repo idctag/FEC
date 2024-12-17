@@ -30,11 +30,11 @@ export function SimpleFooter({
             <div className="flex flex-col gap-8 pt-8 text-[24px]">
               <div className="flex gap-4 items-center">
                 <FiPhone />
-                <p>{email}</p>
+                <p>{phone}</p>
               </div>
               <div className="flex gap-4 items-center">
                 <IoMailOutline />
-                <p>{phone}</p>
+                <p>{email}</p>
               </div>
             </div>
           </div>

@@ -1,47 +1,32 @@
 "use client";
-
+import { LogosType } from "@/blocks/logo/Server";
 import Image from "next/image";
+import React from "react";
+import Marquee from "react-fast-marquee";
 
-const LogoTicker = () => {
-  const logos = [
-    { src: "/brand/logo1.svg" },
-    { src: "/brand/logo2.svg" },
-    { src: "/brand/logo3.svg" },
-    { src: "/brand/logo4.svg" },
-    { src: "/brand/logo5.svg" },
-  ];
-
-  const ticker_style =
-    "flex gap-8 sm:gap-12 md:gap-36 flex-shrink-0 animate-infinite-scroll";
-
+const Card = ({ img }: { img: string }) => {
   return (
-    <div className="md:h-[40vh] flex flex-nowrap gap-8 sm:gap-12 md:gap-36 w-full mb-24 mx-auto max-w-screen-2xl relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-      <div className={ticker_style}>
-        {logos.map((logo, idx) => (
-          <Image
-            priority
-            key={idx}
-            src={logo.src}
-            alt=""
-            className="object-contain max-w-full flex-shrink-0"
-            height={150}
-            width={150}
-          />
-        ))}
+    <div className="py-4 px-12 rounded-xl bg-gray-50">
+      <div className="relative overflow-hidden h-[50px] min-w-[50px] md:h-[100px] md:min-w-[100px] flex items-center justify-center">
+        <Image priority src={img} alt="" fill sizes="auto" />
       </div>
-      <div className={ticker_style}>
-        {logos.map((logo, idx) => (
-          <Image
-            priority
-            key={`2${idx}`}
-            src={logo.src}
-            alt=""
-            className="object-contain max-w-full flex-shrink-0"
-            height={150}
-            width={150}
-          />
+    </div>
+  );
+};
+
+const LogoTicker = ({ slider, title }: LogosType) => {
+  return (
+    <div className="text-center flex flex-col gap-14 my-20">
+      <h1 className="text-[3rem] md:text-[4rem] font-semibold bg-gradient-to-r bg-clip-text text-transparent from-[#1C00EE] to-[#CC00FF]">
+        {title}
+      </h1>
+      <Marquee speed={50} gradient autoFill>
+        {slider.map((item, idx) => (
+          <div key={idx} className="px-2 md:px-10">
+            <Card img={item.logo.url!} />
+          </div>
         ))}
-      </div>
+      </Marquee>
     </div>
   );
 };

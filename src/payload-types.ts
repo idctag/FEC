@@ -145,6 +145,7 @@ export interface Page {
             blockType: 'timeline';
           }
         | {
+            title?: string | null;
             slider: {
               logo: number | Media;
               id?: string | null;
@@ -152,6 +153,14 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'logos';
+          }
+        | {
+            title: string;
+            img: number | Media;
+            paragraph: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'intro';
           }
       )[]
     | null;
@@ -308,12 +317,22 @@ export interface PagesSelect<T extends boolean = true> {
         logos?:
           | T
           | {
+              title?: T;
               slider?:
                 | T
                 | {
                     logo?: T;
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        intro?:
+          | T
+          | {
+              title?: T;
+              img?: T;
+              paragraph?: T;
               id?: T;
               blockName?: T;
             };

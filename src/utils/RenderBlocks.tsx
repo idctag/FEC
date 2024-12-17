@@ -1,4 +1,5 @@
 import HeroServer from "@/blocks/hero/Server";
+import IntroServer from "@/blocks/intro/Server";
 import LogosServer from "@/blocks/logo/Server";
 import TimeLineServer from "@/blocks/timeline/Server";
 import { Page } from "@/payload-types";
@@ -8,6 +9,7 @@ const blockComponents: any = {
   hero: HeroServer,
   timeline: TimeLineServer,
   logos: LogosServer,
+  intro: IntroServer,
 };
 
 export const RenderBlocks: React.FC<{
