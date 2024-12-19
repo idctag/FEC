@@ -162,6 +162,15 @@ export interface Page {
             blockName?: string | null;
             blockType: 'intro';
           }
+        | {
+            title: string;
+            scroll?: string | null;
+            subtitle: string;
+            image?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'environment';
+          }
       )[]
     | null;
   updatedAt: string;
@@ -333,6 +342,16 @@ export interface PagesSelect<T extends boolean = true> {
               title?: T;
               img?: T;
               paragraph?: T;
+              id?: T;
+              blockName?: T;
+            };
+        environment?:
+          | T
+          | {
+              title?: T;
+              scroll?: T;
+              subtitle?: T;
+              image?: T;
               id?: T;
               blockName?: T;
             };

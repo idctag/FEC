@@ -1,3 +1,4 @@
+import { Environment } from "@/blocks/environment/schema";
 import { Hero } from "@/blocks/hero/schema";
 import { Intro } from "@/blocks/intro/schema";
 import { Logos } from "@/blocks/logo/schema";
@@ -26,7 +27,7 @@ export const Pages: CollectionConfig = {
       name: "layout",
       label: "Layout",
       type: "blocks",
-      blocks: [Hero, TimeLine, Logos, Intro],
+      blocks: [Hero, TimeLine, Logos, Intro, Environment],
     },
   ],
 };

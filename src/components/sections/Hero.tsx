@@ -1,13 +1,11 @@
 "use client";
 import { Advantage, HeroProps } from "@/blocks/hero/Server";
 import {
-  Button,
   Carousel,
   Dialog,
   DialogBody,
   DialogHeader,
 } from "@material-tailwind/react";
-import Link from "next/link";
 import React from "react";
 import { motion, useAnimationControls } from "framer-motion";
 
@@ -16,13 +14,13 @@ const HeroLeft = ({ title, subtitle }: { title: string; subtitle: string }) => {
   const subTitleParts = subtitle.split(/(\[.*?\])/);
 
   return (
-    <div className="w-full text-center h-[90vh] md:h-full md:text-left md:w-1/2 p-8 md:pl-20 flex flex-col justify-center gap-12 md:gap-28">
+    <div className="w-full relative text-center h-[90vh] md:h-full md:text-left md:w-1/2 p-8 md:pl-20 flex flex-col justify-center gap-12 md:gap-28">
       <p className="text-[40px] md:text-[64px] font-semibold ">
         {titleParts.map((part, index) =>
           part.startsWith("[") && part.endsWith("]") ? (
             <span
               key={index}
-              className="bg-gradient-to-r bg-clip-text text-transparent from-[#1C00EE] to-[#CC00FF]"
+              className="bg-gradient-to-r bg-clip-text text-transparent from-primary to-secondary"
             >
               {part.slice(1, -1)}
             </span>
@@ -31,14 +29,6 @@ const HeroLeft = ({ title, subtitle }: { title: string; subtitle: string }) => {
           ),
         )}
       </p>
-      <div className="flex gap-10 items-center md:justify-start justify-center">
-        <Link href="#">
-          <Button variant="gradient">Get Started</Button>
-        </Link>
-        <Link href="#">
-          <p className="underline font-medium">Our Features</p>
-        </Link>
-      </div>
       <div className="max-w-[500px]">
         <p className="text-[24px] font-medium">
           {subTitleParts.map((part, index) =>
@@ -170,7 +160,7 @@ const HeroRight = ({ advantage }: { advantage: Advantage[] }) => {
         open={open}
         handler={handleOpen}
       >
-        <DialogHeader>
+        <DialogHeader className="text-center flex items-center justify-center">
           <p className="text-[22px] md:text-[30px]">{advantage[index].title}</p>
         </DialogHeader>
         <DialogBody>
@@ -185,7 +175,7 @@ const Hero = ({ title, subtitle, advantage, scroll }: HeroProps) => {
   return (
     <div
       id={scroll}
-      className="flex flex-col md:flex-row gap-24 max-w-bigscrn size-full items-center md:h-[80vh]"
+      className="flex flex-col md:flex-row relative gap-24 max-w-bigscrn size-full items-center md:h-[80vh]"
     >
       <HeroLeft title={title} subtitle={subtitle} />
       <HeroRight advantage={advantage} />

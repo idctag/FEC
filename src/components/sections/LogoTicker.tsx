@@ -17,7 +17,7 @@ const Card = ({ img }: { img: string }) => {
 const LogoTicker = ({ slider, title }: LogosType) => {
   return (
     <div className="text-center flex flex-col gap-14 my-20">
-      <h1 className="text-[3rem] md:text-[4rem] font-semibold bg-gradient-to-r bg-clip-text text-transparent from-[#1C00EE] to-[#CC00FF]">
+      <h1 className="text-[3rem] md:text-[4rem] font-semibold bg-gradient-to-r bg-clip-text text-transparent from-secondary to-primary">
         {title}
       </h1>
       <Marquee speed={50} gradient autoFill>

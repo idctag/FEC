@@ -21,7 +21,7 @@ const TimeLineServer = (props: TimeLineProps) => {
   const { sections } = props;
 
   return (
-    <div className="flex w-full mt-12 justify-center bg-gradient-to-tr from-indigo-600 to-indigo-800/80">
+    <div className="flex w-full mt-12 justify-center bg-gradient-to-tr from-primary/70 to-primary/60">
       <div className="w-full max-w-screen-2xl">
         <VerticalTimeline className="vertical-timeline-custom-line vertical-timeline vertical-timeline--animate vertical-timeline--two-columns">
           {sections.map((item, idx) => (

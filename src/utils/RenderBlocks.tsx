@@ -1,3 +1,4 @@
+import EnvironmentServer from "@/blocks/environment/Server";
 import HeroServer from "@/blocks/hero/Server";
 import IntroServer from "@/blocks/intro/Server";
 import LogosServer from "@/blocks/logo/Server";
@@ -10,6 +11,7 @@ const blockComponents: any = {
   timeline: TimeLineServer,
   logos: LogosServer,
   intro: IntroServer,
+  environment: EnvironmentServer,
 };
 
 export const RenderBlocks: React.FC<{

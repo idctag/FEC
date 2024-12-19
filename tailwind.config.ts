@@ -14,6 +14,8 @@ export default withMT({
     },
     colors: {
       background: "#f8fafc",
+      primary: "#1C00EE",
+      secondary: "#CC00FF",
     },
     extend: {
       backgroundImage: {
