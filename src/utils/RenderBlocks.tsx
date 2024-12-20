@@ -1,6 +1,7 @@
 import EnvironmentServer from "@/blocks/environment/Server";
 import HeroServer from "@/blocks/hero/Server";
 import IntroServer from "@/blocks/intro/Server";
+import LearningAgeServer from "@/blocks/learnAge/Server";
 import LogosServer from "@/blocks/logo/Server";
 import TimeLineServer from "@/blocks/timeline/Server";
 import { Page } from "@/payload-types";
@@ -12,6 +13,7 @@ const blockComponents: any = {
   logos: LogosServer,
   intro: IntroServer,
   environment: EnvironmentServer,
+  learningAge: LearningAgeServer,
 };
 
 export const RenderBlocks: React.FC<{

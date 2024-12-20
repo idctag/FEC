@@ -6,7 +6,7 @@ import React from "react";
 const Environment = ({ image, title, subtitle }: EnvironmentProps) => {
   console.log(subtitle);
   return (
-    <div className="flex gap-12 flex-col items-center my-20">
+    <div className="flex gap-12 flex-col items-center my-20 max-w-bigscrn">
       <div>
         <p className="text-[4rem]">{title}</p>
         <div className="h-1 w-[12rem] mx-auto rounded-3xl bg-gradient-to-r to-primary from-secondary" />
