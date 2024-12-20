@@ -37,7 +37,7 @@ const HeroLeft = ({ title, subtitle }: { title: string; subtitle: string }) => {
         )}
       </p>
       <div className="max-w-[500px]">
-        <p className="text-[24px] font-medium">
+        <p className="text-[24px] text-gray-600 font-medium">
           {subTitleParts.map((part, index) =>
             part.startsWith("[") && part.endsWith("]") ? (
               <span

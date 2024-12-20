@@ -10,9 +10,9 @@ const LearningAge = ({ title, sub, desc }: LearningAgeProps) => {
         <Typography variant="h1">{title}</Typography>
         <div className="h-1 w-[20rem] mx-auto rounded-3xl bg-gradient-to-r to-primary from-secondary" />
       </div>
-      <div className="flex gap-4">
-        <Typography>{sub}</Typography>
-        <Typography>{desc}</Typography>
+      <div className="flex flex-col gap-4">
+        <Typography className="text-[3rem] text-center">{sub}</Typography>
+        <Typography className="text-[2rem] text-center">{desc}</Typography>
       </div>
     </div>
   );
