@@ -1,3 +1,4 @@
+import AppsServer from "@/blocks/apps/Server";
 import EnvironmentServer from "@/blocks/environment/Server";
 import HeroServer from "@/blocks/hero/Server";
 import IntroServer from "@/blocks/intro/Server";
@@ -14,6 +15,7 @@ const blockComponents: any = {
   intro: IntroServer,
   environment: EnvironmentServer,
   learningAge: LearningAgeServer,
+  apps: AppsServer,
 };
 
 export const RenderBlocks: React.FC<{

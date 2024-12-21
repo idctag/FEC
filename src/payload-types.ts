@@ -179,6 +179,21 @@ export interface Page {
             blockName?: string | null;
             blockType: 'learningAge';
           }
+        | {
+            title: string;
+            apps?:
+              | {
+                  title: string;
+                  desc: string;
+                  img: number | Media;
+                  color?: ('red' | 'green' | 'blue' | 'purple' | 'orange' | 'pink') | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'apps';
+          }
       )[]
     | null;
   updatedAt: string;
@@ -369,6 +384,22 @@ export interface PagesSelect<T extends boolean = true> {
               title?: T;
               sub?: T;
               desc?: T;
+              id?: T;
+              blockName?: T;
+            };
+        apps?:
+          | T
+          | {
+              title?: T;
+              apps?:
+                | T
+                | {
+                    title?: T;
+                    desc?: T;
+                    img?: T;
+                    color?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };
