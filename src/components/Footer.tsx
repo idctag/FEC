@@ -19,9 +19,9 @@ export function SimpleFooter({
   return (
     <footer
       id={scroll || ""}
-      className="flex w-full mt-12 justify-center md:mb-4"
+      className="flex w-full mt-12 justify-center 2xl:mb-4"
     >
-      <div className="flex flex-col w-full max-w-screen-2xl text-white md:rounded-3xl bg-[#1E1E1E] py-8 px-12">
+      <div className="flex flex-col w-full max-w-screen-2xl text-white 2xl:rounded-3xl bg-[#1E1E1E] py-8 px-12">
         <div className="flex flex-col md:flex-row justify-between w-full">
           {/* CONTACT */}
           <div className="flex flex-col gap-4">

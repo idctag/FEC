@@ -17,12 +17,12 @@ const HeroLeft = ({ title, subtitle }: { title: string; subtitle: string }) => {
   const subTitleParts = subtitle.split(/(\[.*?\])/);
 
   return (
-    <div className="w-full relative text-center h-[90vh] md:h-full md:text-left md:w-1/2 p-8 md:pl-20 flex flex-col justify-center gap-12 md:gap-28">
+    <div className="w-full relative text-center h-[90vh] md:h-full md:text-left md:w-1/2 p-8 md:pl-10 2xl:pl-20 flex flex-col justify-center gap-12 md:gap-28">
       <Lottie
         className="absolute z-[-10]  md:top-[20%] md:right-[-14%] md:w-[300px]"
         animationData={rocket}
       />
-      <p className="text-[40px] md:text-[64px] font-semibold ">
+      <p className=" text-[32px] sm:text-[40px] md:text-[64px] font-semibold ">
         {titleParts.map((part, index) =>
           part.startsWith("[") && part.endsWith("]") ? (
             <span
