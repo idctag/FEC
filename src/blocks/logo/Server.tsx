@@ -9,12 +9,13 @@ export type Logo = {
 export type LogosType = {
   slider: Logo[];
   title: string;
+  direction: "right" | "left";
 };
 
-const LogosServer = ({ slider, title }: LogosType) => {
+const LogosServer = ({ slider, title, direction }: LogosType) => {
   return (
     <div className="w-full overflow-hidden">
-      <LogoTicker slider={slider} title={title} />
+      <LogoTicker slider={slider} direction={direction} title={title} />
     </div>
   );
 };

@@ -10,6 +10,12 @@ export const Logos: Block = {
       localized: true,
     },
     {
+      name: "direction",
+      label: "Direction",
+      type: "select",
+      options: ["right", "left"],
+    },
+    {
       name: "slider",
       type: "array",
       required: true,

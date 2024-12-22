@@ -24,5 +24,26 @@ export const Intro: Block = {
       required: true,
       localized: true,
     },
+    {
+      name: "features",
+      label: "Features",
+      type: "array",
+      fields: [
+        {
+          name: "title",
+          label: "Title",
+          type: "text",
+          required: true,
+          localized: true,
+        },
+        {
+          name: "desc",
+          label: "Description",
+          type: "text",
+          required: true,
+          localized: true,
+        },
+      ],
+    },
   ],
 };

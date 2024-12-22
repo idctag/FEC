@@ -146,6 +146,7 @@ export interface Page {
           }
         | {
             title?: string | null;
+            direction?: ('right' | 'left') | null;
             slider: {
               logo: number | Media;
               id?: string | null;
@@ -158,6 +159,13 @@ export interface Page {
             title: string;
             img: number | Media;
             paragraph: string;
+            features?:
+              | {
+                  title: string;
+                  desc: string;
+                  id?: string | null;
+                }[]
+              | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'intro';
@@ -350,6 +358,7 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               title?: T;
+              direction?: T;
               slider?:
                 | T
                 | {
@@ -365,6 +374,13 @@ export interface PagesSelect<T extends boolean = true> {
               title?: T;
               img?: T;
               paragraph?: T;
+              features?:
+                | T
+                | {
+                    title?: T;
+                    desc?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };

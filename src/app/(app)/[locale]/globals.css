@@ -13,29 +13,31 @@
 .vertical-timeline::before {
   /* this is the vertical line */
 
-  background: white !important;
+  background: black !important;
 }
 
 .vertical-timeline::after {
   /* this is the vertical line */
 
-  background: white !important;
+  background: black !important;
 }
 
 .vertical-timeline-element-content {
-  box-shadow:
-    0 0.25rem 0.5em 0 rgba(0, 0, 0, 0.25),
-    0 0.4em 1.25em 0 rgba(0, 0, 0, 0.15) !important;
+  /* box-shadow: */
+  /*   0 0.25rem 0.5em 0 rgba(0, 0, 0, 0.25), */
+  /*   0 0.4em 1.25em 0 rgba(28, 0, 238, 0.75) !important; */
   padding: 2em 3em !important;
+  border-top: 3px solid #1c00ee;
 }
 
 .timeline-date {
-  color: white;
+  color: black;
   font-size: 40px !important;
 }
 
 #vertical-timeline-element-title {
-  font-size: 30px !important;
+  font-size: 2rem !important;
+  font-weight: 600 !important;
 }
 
 #vertical-timeline-element-subtitle {

@@ -15,7 +15,7 @@ export default withMT({
     },
     colors: {
       ...colors,
-      background: "#f8fafc",
+      background: "#f1f5f9",
       primary: "#1C00EE",
       secondary: "#CC00FF",
     },

@@ -14,13 +14,13 @@ const Card = ({ img }: { img: string }) => {
   );
 };
 
-const LogoTicker = ({ slider, title }: LogosType) => {
+const LogoTicker = ({ slider, title, direction }: LogosType) => {
   return (
     <div className="text-center flex flex-col gap-14 my-20">
       <h1 className="text-[3rem] md:text-[4rem] font-semibold bg-gradient-to-r bg-clip-text text-transparent from-secondary to-primary">
         {title}
       </h1>
-      <Marquee speed={50} gradient autoFill>
+      <Marquee direction={direction} speed={50} gradient autoFill>
         {slider.map((item, idx) => (
           <div key={idx} className="px-2 md:px-10">
             <Card img={item.logo.url!} />
