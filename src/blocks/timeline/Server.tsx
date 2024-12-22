@@ -28,7 +28,7 @@ const TimeLineServer = (props: TimeLineProps) => {
             <VerticalTimelineElement
               key={idx}
               icon={
-                <div className="flex size-full items-center justify-center bg-yellow-700  rounded-full">
+                <div className="flex size-full items-center justify-center bg-amber-400  rounded-full">
                   <Image src={item.icon.url!} alt="" height={40} width={40} />
                 </div>
               }

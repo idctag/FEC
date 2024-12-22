@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import withMT from "@material-tailwind/react/utils/withMT";
+import colors from "tailwindcss/colors";
 
 export default withMT({
   content: [
@@ -13,6 +14,7 @@ export default withMT({
       istok: ["Istok Web", "sans-serif"],
     },
     colors: {
+      ...colors,
       background: "#f8fafc",
       primary: "#1C00EE",
       secondary: "#CC00FF",
