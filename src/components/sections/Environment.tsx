@@ -4,7 +4,6 @@ import Image from "next/image";
 import React from "react";
 
 const Environment = ({ image, title, subtitle }: EnvironmentProps) => {
-  console.log(subtitle);
   return (
     <div className="flex gap-12 flex-col items-center my-20 max-w-bigscrn">
       <div>
