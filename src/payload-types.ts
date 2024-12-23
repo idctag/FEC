@@ -140,6 +140,7 @@ export interface Page {
               blockName?: string | null;
               blockType: 'timelineSection';
             }[];
+            scroll?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'timeline';
@@ -351,6 +352,7 @@ export interface PagesSelect<T extends boolean = true> {
                           blockName?: T;
                         };
                   };
+              scroll?: T;
               id?: T;
               blockName?: T;
             };

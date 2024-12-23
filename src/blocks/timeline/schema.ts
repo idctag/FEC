@@ -43,5 +43,10 @@ export const TimeLine: Block = {
       blocks: [TimeLineSection],
       required: true,
     },
+    {
+      name: "scroll",
+      label: "Scroll",
+      type: "text",
+    },
   ],
 };

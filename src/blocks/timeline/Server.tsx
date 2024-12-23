@@ -15,20 +15,22 @@ export type TimeLineSectionProps = {
 };
 
 export type TimeLineProps = {
+  scroll: string;
   sections: TimeLineSectionProps[];
 };
 const TimeLineServer = (props: TimeLineProps) => {
   const { sections } = props;
 
   return (
-    <div className="flex w-full mt-12 justify-center bg-[#e0e7ff]">
+    <div
+      id={props.scroll || ""}
+      className="flex w-full mt-12 justify-center bg-[#e0e7ff]"
+    >
       <div className="w-full max-w-screen-2xl">
         <VerticalTimeline className="vertical-timeline-custom-line  vertical-timeline vertical-timeline--animate vertical-timeline--two-columns">
           {sections.map((item, idx) => (
             <VerticalTimelineElement
               key={idx}
-              // contentStyle={{ background: "#e0e7ff" }}
-              // contentArrowStyle={{ borderRight: "7px solid #e0e7ff" }}
               icon={
                 <div className="flex size-full items-center justify-center bg-white rounded-full">
                   <Image src={item.icon.url!} alt="" height={40} width={40} />
