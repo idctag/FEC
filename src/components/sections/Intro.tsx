@@ -14,14 +14,16 @@ const Intro = (props: IntroType) => {
         <p className="text-[1.3rem] mt-4">{paragraph}</p>
       </div>
       {/* BOTTOM SECTION */}
-      <div className="flex gap-12">
+      <div className="flex flex-col 2xl:flex-row gap-12">
         <div className="bg-primary/30 px-12 pt-12 rounded-3xl">
           <Image src={img.url!} alt="" height={600} width={500} />
         </div>
-        <div className="w-1/2 flex flex-col gap-12">
+        <div className="2xl:w-1/2 flex px-4 flex-col gap-12">
           <div>
-            <p className="text-pink-400 text-[1.5rem]">Teacher</p>
-            <p className="text-[3rem] font-semibold">
+            <p className="text-pink-400 text-[1rem] 2xl:text-[1.5rem]">
+              Teacher
+            </p>
+            <p className="text-[2.5rem] 2xl:text-[3rem] font-semibold">
               10+ years Experience, University of Philippines
             </p>
           </div>

@@ -9,7 +9,7 @@ const LearningAge = ({ title, sub, desc }: LearningAgeProps) => {
         <p className="text-[3rem] 2xl:text-[4rem]">{title}</p>
         <div className="h-1 w-[15rem] mx-auto rounded-3xl bg-gradient-to-r to-primary from-secondary" />
       </div>
-      <div className="flex size-full border-4 border-primary rounded-3xl p-12">
+      <div className="flex size-full border-4 border-primary rounded-3xl p-2 2xl:p-12">
         <p className="text-[1.5rem] 2xl:text-[1.7rem] text-center">
           {sub}. {desc}
         </p>
