@@ -171,6 +171,7 @@ export interface Page {
             title: string;
             scroll?: string | null;
             subtitle: string;
+            desc: string;
             image?: (number | null) | Media;
             id?: string | null;
             blockName?: string | null;
@@ -384,6 +385,7 @@ export interface PagesSelect<T extends boolean = true> {
               title?: T;
               scroll?: T;
               subtitle?: T;
+              desc?: T;
               image?: T;
               id?: T;
               blockName?: T;

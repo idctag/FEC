@@ -6,10 +6,18 @@ export type EnvironmentProps = {
   image: Media;
   title: string;
   subtitle: string;
+  desc: string;
 };
 
-const EnvironmentServer = ({ image, title, subtitle }: EnvironmentProps) => {
-  return <Environment image={image} title={title} subtitle={subtitle} />;
+const EnvironmentServer = ({
+  image,
+  title,
+  subtitle,
+  desc,
+}: EnvironmentProps) => {
+  return (
+    <Environment desc={desc} image={image} title={title} subtitle={subtitle} />
+  );
 };
 
 export default EnvironmentServer;

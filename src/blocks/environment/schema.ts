@@ -23,6 +23,13 @@ export const Environment: Block = {
       localized: true,
     },
     {
+      name: "desc",
+      label: "Description",
+      type: "text",
+      required: true,
+      localized: true,
+    },
+    {
       name: "image",
       label: "Image",
       type: "upload",
