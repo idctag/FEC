@@ -35,7 +35,7 @@ const AppsComponent = (props: AppsSection) => {
   return (
     <div className="w-full max-w-bigscrn my-24 flex flex-col items-center gap-8 justify-center">
       <div className="flex flex-col gap-4">
-        <p className="max-w-[60rem] text-[3rem] md:text-[4rem] text-center">
+        <p className="max-w-[60rem] font-semibold text-[2.5rem] 2xl:text-[4rem] text-center">
           {props.title}
         </p>
         <div className="h-1 w-[20rem] mx-auto rounded-3xl bg-gradient-to-r to-primary from-secondary" />

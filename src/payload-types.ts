@@ -160,13 +160,9 @@ export interface Page {
             title: string;
             img: number | Media;
             paragraph: string;
-            features?:
-              | {
-                  title: string;
-                  desc: string;
-                  id?: string | null;
-                }[]
-              | null;
+            work: string;
+            experience: string;
+            desc: string;
             id?: string | null;
             blockName?: string | null;
             blockType: 'intro';
@@ -376,13 +372,9 @@ export interface PagesSelect<T extends boolean = true> {
               title?: T;
               img?: T;
               paragraph?: T;
-              features?:
-                | T
-                | {
-                    title?: T;
-                    desc?: T;
-                    id?: T;
-                  };
+              work?: T;
+              experience?: T;
+              desc?: T;
               id?: T;
               blockName?: T;
             };

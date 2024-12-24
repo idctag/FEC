@@ -2,22 +2,21 @@ import Intro from "@/components/sections/Intro";
 import { Media } from "@/payload-types";
 import React from "react";
 
-type Feature = {
-  title: string;
-  desc: string;
-};
-
 export type IntroType = {
   title: string;
   img: Media;
   paragraph: string;
-  features: Feature[];
+  work: string;
+  experience: string;
+  desc: string;
 };
 
 const IntroServer = (props: IntroType) => {
   return (
     <Intro
-      features={props.features}
+      desc={props.desc}
+      work={props.work}
+      experience={props.experience}
       paragraph={props.paragraph}
       img={props.img}
       title={props.title}

@@ -4,7 +4,7 @@ import Image from "next/image";
 import React from "react";
 
 const Intro = (props: IntroType) => {
-  const { title, paragraph, img } = props;
+  const { title, paragraph, img, desc, experience, work } = props;
   return (
     <div className="size-full flex flex-col items-center max-w-screen-2xl md:p-4 gap-24 my-12">
       {/* TOP SECTION */}
@@ -15,23 +15,20 @@ const Intro = (props: IntroType) => {
       </div>
       {/* BOTTOM SECTION */}
       <div className="flex flex-col 2xl:flex-row gap-12">
-        <div className="bg-primary/30 px-12 pt-12 rounded-3xl">
+        <div className="2xl:w-1/2 flex justify-center">
           <Image src={img.url!} alt="" height={600} width={500} />
         </div>
         <div className="2xl:w-1/2 flex px-4 flex-col gap-12">
           <div>
             <p className="text-pink-400 text-[1rem] 2xl:text-[1.5rem]">
-              Teacher
+              {work}
             </p>
-            <p className="text-[2.5rem] 2xl:text-[3rem] font-semibold">
-              10+ years Experience, University of Philippines
+            <p className="text-[2rem] 2xl:text-[2.5rem] font-semibold">
+              {experience}
             </p>
           </div>
-
-          <p className="text-[2rem] text-gray-500 relative">
-            &ldquo; I have taught English in many countries before, and I
-            can&#39;t find children who learn quickly and effectively in a short
-            time like these Mongolian children. &ldquo;
+          <p className="text-[1.5rem] 2xl:text-[1.8rem] text-gray-500 relative">
+            &ldquo;{desc}&ldquo;
           </p>
         </div>
       </div>
