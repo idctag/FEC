@@ -16,9 +16,12 @@ const Intro = (props: IntroType) => {
         <p className="text-[1.3rem] mt-4">{paragraph}</p>
       </div>
       {/* BOTTOM SECTION */}
-      <div className="flex flex-col relative 2xl:flex-row gap-12">
-        <div className="2xl:w-1/2 flex justify-center">
-          <Lottie className="absolute size-full" animationData={background1} />
+      <div className="flex flex-col 2xl:flex-row gap-12">
+        <div className="2xl:w-1/2 flex relative justify-center">
+          <Lottie
+            className="absolute inset-0 size-full"
+            animationData={background1}
+          />
           <Image
             src={img.url!}
             alt=""
