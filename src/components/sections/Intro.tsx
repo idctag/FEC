@@ -2,6 +2,8 @@
 import { IntroType } from "@/blocks/intro/Server";
 import Image from "next/image";
 import React from "react";
+import background1 from "@/../public/background1.json";
+import Lottie from "lottie-react";
 
 const Intro = (props: IntroType) => {
   const { title, paragraph, img, desc, experience, work } = props;
@@ -14,9 +16,16 @@ const Intro = (props: IntroType) => {
         <p className="text-[1.3rem] mt-4">{paragraph}</p>
       </div>
       {/* BOTTOM SECTION */}
-      <div className="flex flex-col 2xl:flex-row gap-12">
+      <div className="flex flex-col relative 2xl:flex-row gap-12">
         <div className="2xl:w-1/2 flex justify-center">
-          <Image src={img.url!} alt="" height={600} width={500} />
+          <Lottie className="absolute size-full" animationData={background1} />
+          <Image
+            src={img.url!}
+            alt=""
+            className="z-10"
+            height={600}
+            width={500}
+          />
         </div>
         <div className="2xl:w-1/2 flex px-4 flex-col gap-12">
           <div>

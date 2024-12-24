@@ -8,7 +8,7 @@ import {
 } from "@material-tailwind/react";
 import React from "react";
 import Lottie from "lottie-react";
-import rocket from "@/../public/rocket.json";
+import rocketNew from "@/../public/rocket_new.json";
 import cursor from "@/../public/cursor.json";
 import { motion, useAnimationControls } from "framer-motion";
 
@@ -20,7 +20,7 @@ const HeroLeft = ({ title, subtitle }: { title: string; subtitle: string }) => {
     <div className="w-full relative text-center h-[90vh] md:h-full md:text-left md:w-1/2 p-8 md:pl-10 2xl:pl-20 flex flex-col justify-center gap-4 2xl:gap-28">
       <Lottie
         className="absolute z-[-10]  md:top-[20%] md:right-[-14%] md:w-[300px]"
-        animationData={rocket}
+        animationData={rocketNew}
       />
       <p className=" text-[32px] sm:text-[40px] 2xl:text-[64px] font-semibold ">
         {titleParts.map((part, index) =>
