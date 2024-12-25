@@ -5,6 +5,7 @@ import { Intro } from "@/blocks/intro/schema";
 import { LearningAge } from "@/blocks/learnAge/schema";
 import { Logos } from "@/blocks/logo/schema";
 import { TimeLine } from "@/blocks/timeline/schema";
+import { Tips } from "@/blocks/tips/schema";
 import { Vocabulary } from "@/blocks/vocabulary/schema";
 import { CollectionConfig } from "payload";
 
@@ -39,6 +40,7 @@ export const Pages: CollectionConfig = {
         LearningAge,
         Apps,
         Vocabulary,
+        Tips,
       ],
     },
   ],

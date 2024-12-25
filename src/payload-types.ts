@@ -213,6 +213,26 @@ export interface Page {
             blockName?: string | null;
             blockType: 'vocabulary';
           }
+        | {
+            scroll?: string | null;
+            title: string;
+            sub: string;
+            tips?:
+              | {
+                  category?: string | null;
+                  tip?:
+                    | {
+                        advice?: string | null;
+                        id?: string | null;
+                      }[]
+                    | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'tips';
+          }
       )[]
     | null;
   updatedAt: string;
@@ -437,6 +457,27 @@ export interface PagesSelect<T extends boolean = true> {
                 | T
                 | {
                     advice?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        tips?:
+          | T
+          | {
+              scroll?: T;
+              title?: T;
+              sub?: T;
+              tips?:
+                | T
+                | {
+                    category?: T;
+                    tip?:
+                      | T
+                      | {
+                          advice?: T;
+                          id?: T;
+                        };
                     id?: T;
                   };
               id?: T;
