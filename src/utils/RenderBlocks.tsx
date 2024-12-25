@@ -5,6 +5,7 @@ import IntroServer from "@/blocks/intro/Server";
 import LearningAgeServer from "@/blocks/learnAge/Server";
 import LogosServer from "@/blocks/logo/Server";
 import TimeLineServer from "@/blocks/timeline/Server";
+import VocabularyServer from "@/blocks/vocabulary/Server";
 import { Page } from "@/payload-types";
 import React, { Fragment } from "react";
 
@@ -16,6 +17,7 @@ const blockComponents: any = {
   environment: EnvironmentServer,
   learningAge: LearningAgeServer,
   apps: AppsServer,
+  vocabulary: VocabularyServer,
 };
 
 export const RenderBlocks: React.FC<{

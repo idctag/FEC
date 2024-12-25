@@ -5,6 +5,7 @@ import { Intro } from "@/blocks/intro/schema";
 import { LearningAge } from "@/blocks/learnAge/schema";
 import { Logos } from "@/blocks/logo/schema";
 import { TimeLine } from "@/blocks/timeline/schema";
+import { Vocabulary } from "@/blocks/vocabulary/schema";
 import { CollectionConfig } from "payload";
 
 export const Pages: CollectionConfig = {
@@ -29,7 +30,16 @@ export const Pages: CollectionConfig = {
       name: "layout",
       label: "Layout",
       type: "blocks",
-      blocks: [Hero, TimeLine, Logos, Intro, Environment, LearningAge, Apps],
+      blocks: [
+        Hero,
+        TimeLine,
+        Logos,
+        Intro,
+        Environment,
+        LearningAge,
+        Apps,
+        Vocabulary,
+      ],
     },
   ],
 };

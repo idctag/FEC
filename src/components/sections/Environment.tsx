@@ -12,9 +12,8 @@ const Environment = ({ image, title, subtitle, desc }: EnvironmentProps) => {
         <div className="flex">
           <Lottie
             animationData={objects}
-            className="size-[70px] left-10 2xl:size-[100px] absolute 2xl:static"
+            className="size-[70px] left-0 top-[-4rem] 2xl:size-[100px] absolute 2xl:static"
           />
-
           <p className="text-[2.5rem] font-semibold 2xl:text-[4rem] text-center">
             {title}
           </p>

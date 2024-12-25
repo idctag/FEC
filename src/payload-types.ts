@@ -200,6 +200,19 @@ export interface Page {
             blockName?: string | null;
             blockType: 'apps';
           }
+        | {
+            scroll?: string | null;
+            title: string;
+            advices?:
+              | {
+                  advice: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'vocabulary';
+          }
       )[]
     | null;
   updatedAt: string;
@@ -410,6 +423,20 @@ export interface PagesSelect<T extends boolean = true> {
                     desc?: T;
                     img?: T;
                     color?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        vocabulary?:
+          | T
+          | {
+              scroll?: T;
+              title?: T;
+              advices?:
+                | T
+                | {
+                    advice?: T;
                     id?: T;
                   };
               id?: T;
