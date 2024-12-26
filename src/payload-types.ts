@@ -233,6 +233,21 @@ export interface Page {
             blockName?: string | null;
             blockType: 'tips';
           }
+        | {
+            scroll?: string | null;
+            title: string;
+            desc: string;
+            links?:
+              | {
+                  title: string;
+                  link: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'test';
+          }
       )[]
     | null;
   updatedAt: string;
@@ -478,6 +493,22 @@ export interface PagesSelect<T extends boolean = true> {
                           advice?: T;
                           id?: T;
                         };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        test?:
+          | T
+          | {
+              scroll?: T;
+              title?: T;
+              desc?: T;
+              links?:
+                | T
+                | {
+                    title?: T;
+                    link?: T;
                     id?: T;
                   };
               id?: T;

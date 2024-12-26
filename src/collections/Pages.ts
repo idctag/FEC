@@ -4,6 +4,7 @@ import { Hero } from "@/blocks/hero/schema";
 import { Intro } from "@/blocks/intro/schema";
 import { LearningAge } from "@/blocks/learnAge/schema";
 import { Logos } from "@/blocks/logo/schema";
+import { Test } from "@/blocks/test/schema";
 import { TimeLine } from "@/blocks/timeline/schema";
 import { Tips } from "@/blocks/tips/schema";
 import { Vocabulary } from "@/blocks/vocabulary/schema";
@@ -41,6 +42,7 @@ export const Pages: CollectionConfig = {
         Apps,
         Vocabulary,
         Tips,
+        Test,
       ],
     },
   ],

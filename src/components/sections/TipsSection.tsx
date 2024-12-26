@@ -22,7 +22,7 @@ const TipsSection = (props: TipsType) => {
         <p className="text-[2.5rem] font-semibold 2xl:text-[4rem]">{title}</p>
         <div className="h-1 w-[15rem] mx-auto rounded-3xl bg-gradient-to-r to-primary from-secondary" />
       </div>
-      <p className="text-center  2xl:text-[2rem]">{sub}</p>
+      <p className="text-center p-2 2xl:text-[2rem]">{sub}</p>
       <Tabs value={activeTab}>
         <TabsHeader
           className="rounded-none border-b border-blue-gray-50 bg-transparent p-0"
@@ -35,7 +35,7 @@ const TipsSection = (props: TipsType) => {
             <Tab
               key={idx}
               value={item.category}
-              className="text-[1.4rem]"
+              className="text-[0.7rem] 2xl:text-[1.4rem]"
               onClick={() => setActiveTab(item.category)}
             >
               {item.category}
@@ -50,7 +50,7 @@ const TipsSection = (props: TipsType) => {
               value={item.category}
             >
               {item.tip.map((advice, idx) => (
-                <p key={idx} className="text-[1.3rem]">
+                <p key={idx} className="2xl:text-[1.3rem]">
                   {idx + 1}. {advice.advice}
                 </p>
               ))}

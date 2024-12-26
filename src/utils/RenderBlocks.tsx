@@ -4,6 +4,7 @@ import HeroServer from "@/blocks/hero/Server";
 import IntroServer from "@/blocks/intro/Server";
 import LearningAgeServer from "@/blocks/learnAge/Server";
 import LogosServer from "@/blocks/logo/Server";
+import TestServer from "@/blocks/test/Server";
 import TimeLineServer from "@/blocks/timeline/Server";
 import TipsServer from "@/blocks/tips/Server";
 import VocabularyServer from "@/blocks/vocabulary/Server";
@@ -20,6 +21,7 @@ const blockComponents: any = {
   apps: AppsServer,
   vocabulary: VocabularyServer,
   tips: TipsServer,
+  test: TestServer,
 };
 
 export const RenderBlocks: React.FC<{
