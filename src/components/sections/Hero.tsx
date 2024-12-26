@@ -19,10 +19,10 @@ const HeroLeft = ({ title, subtitle }: { title: string; subtitle: string }) => {
   return (
     <div className="w-full relative text-center h-[90vh] md:h-full md:text-left md:w-1/2 p-8 md:pl-10 2xl:pl-20 flex flex-col justify-center gap-4 2xl:gap-28">
       <Lottie
-        className="absolute z-[-10]  md:top-[20%] md:right-[-14%] md:w-[300px] xl:top-[30%]"
+        className="absolute z-[-10]  md:top-[20%] md:right-[-14%] md:w-[300px] xl:top-[20%]"
         animationData={rocketNew}
       />
-      <p className=" text-[32px] sm:text-[40px] 2xl:text-[64px] font-semibold ">
+      <p className="text-[40px] 2xl:text-[64px] font-semibold ">
         {titleParts.map((part, index) =>
           part.startsWith("[") && part.endsWith("]") ? (
             <span

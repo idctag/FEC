@@ -248,6 +248,14 @@ export interface Page {
             blockName?: string | null;
             blockType: 'test';
           }
+        | {
+            title: string;
+            sub: string;
+            link: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'enroll';
+          }
       )[]
     | null;
   updatedAt: string;
@@ -511,6 +519,15 @@ export interface PagesSelect<T extends boolean = true> {
                     link?: T;
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        enroll?:
+          | T
+          | {
+              title?: T;
+              sub?: T;
+              link?: T;
               id?: T;
               blockName?: T;
             };

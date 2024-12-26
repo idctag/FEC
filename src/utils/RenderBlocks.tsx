@@ -1,4 +1,5 @@
 import AppsServer from "@/blocks/apps/Server";
+import EnrollServer from "@/blocks/enroll/Server";
 import EnvironmentServer from "@/blocks/environment/Server";
 import HeroServer from "@/blocks/hero/Server";
 import IntroServer from "@/blocks/intro/Server";
@@ -22,6 +23,7 @@ const blockComponents: any = {
   vocabulary: VocabularyServer,
   tips: TipsServer,
   test: TestServer,
+  enroll: EnrollServer,
 };
 
 export const RenderBlocks: React.FC<{

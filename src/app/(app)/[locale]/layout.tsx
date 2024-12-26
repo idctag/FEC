@@ -22,11 +22,7 @@ export default async function RootLayout({
     notFound();
   }
   return (
-    <html
-      lang={locale}
-      suppressHydrationWarning
-      className="snap-y snap-proximity"
-    >
+    <html lang={locale} suppressHydrationWarning>
       <body className={`antialiased font-istok`}>
         <HeaderServer />
         {children}
