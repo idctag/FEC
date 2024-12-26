@@ -6,7 +6,7 @@ import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
-  title: "FEC",
+  title: "Focus Education Center",
   description: "Focus Education Center",
 };
 
