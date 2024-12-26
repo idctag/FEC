@@ -5,12 +5,12 @@ const EnrollSection = (props: EnrollProps) => {
   const { title, link, sub } = props;
   return (
     <div className="size-full px-12 gap-8 flex flex-col 2xl:flex-row items-center justify-between  max-w-screen-2xl bg-primary/70 p-4 2xl:rounded-2xl">
-      <p className="text-[2.5rem] text-white text-center font-semibold">
+      <p className="text-[1.7rem] 2xl:text-[2.5rem] text-white text-center font-semibold">
         {title}
       </p>
       <div className="h-20 w-full max-w-72 bg-black">
         <a href={link}>
-          <button className="group flex hover:translate-x-[20px] hover:translate-y-[-15px] transition-transform duration-300 h-full w-full items-center justify-between border-2 border-black bg-white px-8 text-xl font-semibold">
+          <button className="group flex hover:translate-x-[20px] hover:translate-y-[-15px] transition-transform duration-300 h-full w-full items-center justify-between border-2 border-black bg-white px-8 2xl:text-xl font-semibold">
             <span className="relative overflow-hidden">
               <span className="inline-block transition-transform duration-300 group-hover:-translate-y-full">
                 {sub}
