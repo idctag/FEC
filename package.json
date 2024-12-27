@@ -22,8 +22,6 @@
     "clsx": "^2.1.1",
     "cobe": "^0.6.3",
     "cross-env": "^7.0.3",
-    "embla-carousel-autoplay": "^8.5.1",
-    "embla-carousel-react": "^8.5.1",
     "framer-motion": "^11.11.17",
     "graphql": "^16.9.0",
     "i18next": "^23.16.5",
