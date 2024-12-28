@@ -20,7 +20,6 @@ export const Apps: Block = {
           label: "title",
           type: "text",
           required: true,
-          localized: true,
         },
         {
           name: "desc",
