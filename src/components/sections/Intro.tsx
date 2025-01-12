@@ -6,9 +6,12 @@ import background1 from "@/../public/background1.json";
 import Lottie from "lottie-react";
 
 const Intro = (props: IntroType) => {
-  const { title, paragraph, img, desc, experience, work } = props;
+  const { title, paragraph, img, desc, experience, work, scroll } = props;
   return (
-    <div className="size-full flex flex-col items-center max-w-screen-2xl md:p-4 gap-24 my-12">
+    <div
+      id={scroll}
+      className="size-full flex flex-col items-center max-w-screen-2xl md:p-4 gap-24 my-12"
+    >
       {/* TOP SECTION */}
       <div className="flex flex-col items-center text-center gap-2">
         <p className="text-[40px] font-semibold  max-w-[800px]">{title}</p>
@@ -32,7 +35,7 @@ const Intro = (props: IntroType) => {
         </div>
         <div className="2xl:w-1/2 flex px-4 flex-col gap-12">
           <div>
-            <p className="text-pink-400 text-[1rem] 2xl:text-[1.5rem]">
+            <p className="text-secondary text-[1rem] 2xl:text-[1.5rem]">
               {work}
             </p>
             <p className="text-[2rem] 2xl:text-[2.5rem] font-semibold">

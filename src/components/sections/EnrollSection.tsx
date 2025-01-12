@@ -2,9 +2,12 @@
 import { EnrollProps } from "@/blocks/enroll/Server";
 
 const EnrollSection = (props: EnrollProps) => {
-  const { title, link, sub } = props;
+  const { title, link, sub, scroll } = props;
   return (
-    <div className="size-full px-12 gap-8 flex flex-col 2xl:flex-row items-center justify-between  max-w-screen-2xl bg-primary/70 p-4 2xl:rounded-2xl">
+    <div
+      id={scroll}
+      className="size-full px-12 gap-8 flex flex-col 2xl:flex-row items-center justify-between  max-w-screen-2xl bg-primary/70 p-4 2xl:rounded-2xl"
+    >
       <p className="text-[1.7rem] 2xl:text-[2.5rem] text-white text-center font-semibold">
         {title}
       </p>

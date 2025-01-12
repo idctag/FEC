@@ -4,12 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.embla__button {
-  color: white;
-  backdrop-filter: blur(10px);
-  border-radius: 100%;
-}
-
 .vertical-timeline::before {
   /* this is the vertical line */
 
@@ -23,9 +17,6 @@
 }
 
 .vertical-timeline-element-content {
-  /* box-shadow: */
-  /*   0 0.25rem 0.5em 0 rgba(0, 0, 0, 0.25), */
-  /*   0 0.4em 1.25em 0 rgba(28, 0, 238, 0.75) !important; */
   padding: 2em 3em !important;
   border-top: 3px solid #1c00ee;
 }

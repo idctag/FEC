@@ -43,5 +43,10 @@ export const Apps: Block = {
         },
       ],
     },
+    {
+      name: "scroll",
+      label: "Scroll",
+      type: "text",
+    },
   ],
 };

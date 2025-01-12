@@ -12,10 +12,17 @@ export type Apps = {
 export type AppsSection = {
   title: string;
   apps: Apps[];
+  scroll: string;
 };
 
 const AppsServer = (props: AppsSection) => {
-  return <AppsComponent title={props.title} apps={props.apps} />;
+  return (
+    <AppsComponent
+      scroll={props.scroll}
+      title={props.title}
+      apps={props.apps}
+    />
+  );
 };
 
 export default AppsServer;

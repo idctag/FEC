@@ -8,7 +8,7 @@ import {
 } from "@material-tailwind/react";
 import React from "react";
 import Lottie from "lottie-react";
-import rocketNew from "@/../public/rocket_new.json";
+import rocket from "@/../public/rocket.json";
 import cursor from "@/../public/cursor.json";
 import { motion, useAnimationControls } from "framer-motion";
 
@@ -19,8 +19,8 @@ const HeroLeft = ({ title, subtitle }: { title: string; subtitle: string }) => {
   return (
     <div className="w-full relative text-center h-[90vh] md:h-full md:text-left md:w-1/2 p-8 md:pl-10 2xl:pl-20 flex flex-col justify-center gap-4 2xl:gap-28">
       <Lottie
-        className="absolute z-[-10]  md:top-[20%] md:right-[-14%] md:w-[300px] xl:top-[20%]"
-        animationData={rocketNew}
+        className="absolute z-[-10]  md:top-[20%] md:right-[-14%] md:w-[300px] xl:top-[35%]"
+        animationData={rocket}
       />
       <p className="text-[40px] 2xl:text-[64px] font-semibold ">
         {titleParts.map((part, index) =>
@@ -78,9 +78,8 @@ const HeroRight = ({ advantage }: { advantage: Advantage[] }) => {
             {new Array(length).fill("").map((_, i) => (
               <span
                 key={i}
-                className={`block h-1 cursor-pointer rounded-2xl transition-all content-[''] ${
-                  activeIndex === i ? "w-8 bg-white" : "w-4 bg-white/50"
-                }`}
+                className={`block h-1 cursor-pointer rounded-2xl transition-all content-[''] ${activeIndex === i ? "w-8 bg-white" : "w-4 bg-white/50"
+                  }`}
                 onClick={() => setActiveIndex(i)}
               />
             ))}

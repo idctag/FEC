@@ -162,6 +162,7 @@ export interface Page {
             work: string;
             experience: string;
             desc: string;
+            scroll?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'intro';
@@ -180,6 +181,7 @@ export interface Page {
             title: string;
             sub: string;
             desc: string;
+            scroll?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'learningAge';
@@ -195,6 +197,7 @@ export interface Page {
                   id?: string | null;
                 }[]
               | null;
+            scroll?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'apps';
@@ -251,6 +254,7 @@ export interface Page {
             title: string;
             sub: string;
             link: string;
+            scroll?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'enroll';
@@ -430,6 +434,7 @@ export interface PagesSelect<T extends boolean = true> {
               work?: T;
               experience?: T;
               desc?: T;
+              scroll?: T;
               id?: T;
               blockName?: T;
             };
@@ -450,6 +455,7 @@ export interface PagesSelect<T extends boolean = true> {
               title?: T;
               sub?: T;
               desc?: T;
+              scroll?: T;
               id?: T;
               blockName?: T;
             };
@@ -466,6 +472,7 @@ export interface PagesSelect<T extends boolean = true> {
                     color?: T;
                     id?: T;
                   };
+              scroll?: T;
               id?: T;
               blockName?: T;
             };
@@ -526,6 +533,7 @@ export interface PagesSelect<T extends boolean = true> {
               title?: T;
               sub?: T;
               link?: T;
+              scroll?: T;
               id?: T;
               blockName?: T;
             };

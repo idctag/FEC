@@ -23,5 +23,10 @@ export const Enroll: Block = {
       type: "text",
       required: true,
     },
+    {
+      name: "scroll",
+      label: "Scroll",
+      type: "text",
+    },
   ],
 };

@@ -45,5 +45,10 @@ export const Intro: Block = {
       required: true,
       localized: true,
     },
+    {
+      name: "scroll",
+      label: "Scroll",
+      type: "text",
+    },
   ],
 };

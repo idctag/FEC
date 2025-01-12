@@ -9,11 +9,13 @@ export type IntroType = {
   work: string;
   experience: string;
   desc: string;
+  scroll: string;
 };
 
 const IntroServer = (props: IntroType) => {
   return (
     <Intro
+      scroll={props.scroll}
       desc={props.desc}
       work={props.work}
       experience={props.experience}

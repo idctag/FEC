@@ -4,10 +4,11 @@ export type LearningAgeProps = {
   title: string;
   sub: string;
   desc: string;
+  scroll: string;
 };
 
-const LearningAgeServer = ({ title, sub, desc }: LearningAgeProps) => {
-  return <LearningAge sub={sub} title={title} desc={desc} />;
+const LearningAgeServer = ({ title, sub, desc, scroll }: LearningAgeProps) => {
+  return <LearningAge scroll={scroll} sub={sub} title={title} desc={desc} />;
 };
 
 export default LearningAgeServer;

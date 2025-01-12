@@ -24,5 +24,10 @@ export const LearningAge: Block = {
       required: true,
       localized: true,
     },
+    {
+      name: "scroll",
+      label: "Scroll",
+      type: "text",
+    },
   ],
 };
