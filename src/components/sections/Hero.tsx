@@ -6,11 +6,12 @@ import {
   DialogBody,
   DialogHeader,
 } from "@material-tailwind/react";
-import React from "react";
+import React, { useState } from "react";
 import Lottie from "lottie-react";
 import rocket from "@/../public/rocket.json";
 import cursor from "@/../public/cursor.json";
 import { motion, useAnimationControls } from "framer-motion";
+import Image from "next/image";
 
 const HeroLeft = ({ title, subtitle }: { title: string; subtitle: string }) => {
   const titleParts = title.split(/(\[.*?\])/);
@@ -56,21 +57,26 @@ const HeroLeft = ({ title, subtitle }: { title: string; subtitle: string }) => {
   );
 };
 const HeroRight = ({ advantage }: { advantage: Advantage[] }) => {
+  const [isHovering, setIsHovering] = useState(false);
   const [open, setOpen] = React.useState(false);
   const [index, setIndex] = React.useState(0);
   const controls = useAnimationControls();
+
   const handleHover = () => {
     controls.start("open");
+    setIsHovering(true);
   };
 
   const handleHoverEnd = () => {
     controls.start("initial");
+    setIsHovering(false);
   };
   const handleOpen = () => setOpen(!open);
+
   return (
     <div className="flex md:w-1/2 h-[60vh] max-h-[700px] w-full max-w-[550px] md:h-[80%]">
       <Carousel
-        autoplay
+        autoplay={!isHovering}
         className="md:rounded-3xl"
         loop
         navigation={({ setActiveIndex, activeIndex, length }) => (
@@ -97,8 +103,7 @@ const HeroRight = ({ advantage }: { advantage: Advantage[] }) => {
             }}
             className="object-fill size-full absolute overflow-hidden"
           >
-            <motion.img
-              src={item.image.url!}
+            <motion.div
               variants={{
                 initial: {
                   scale: 1,
@@ -108,11 +113,19 @@ const HeroRight = ({ advantage }: { advantage: Advantage[] }) => {
                 },
               }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              alt=""
-              className="object-fill size-full"
+              className="size-full relative"
               initial="initial"
               animate={controls}
-            />
+            >
+              <Image
+                placeholder="empty"
+                src={item.image.url!}
+                sizes="(max-width: 550px), (max-heigth: 611px)"
+                loading="eager"
+                alt=""
+                fill
+              />
+            </motion.div>
             <motion.div className="absolute inset-0 grid h-full w-full place-items-center group hover:bg-black/60 hover:cursor-pointer">
               <motion.p
                 variants={{

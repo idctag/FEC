@@ -21,7 +21,13 @@ export function CardComp({
         color={color || "blue-gray"}
         className="flex relative items-center justify-center h-56"
       >
-        <Image src={img} alt="" width={300} height={300} />
+        <Image
+          src={img}
+          alt=""
+          className="size-auto"
+          width={300}
+          height={300}
+        />
       </CardHeader>
       <CardBody>
         <p className={`mb-2 text-[2.5rem] text-${color}`}>{title}</p>

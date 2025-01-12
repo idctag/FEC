@@ -72,9 +72,8 @@ export function CustomNavbar({ logo, nav }: Omit<Header, "id">) {
                 priority
                 src={logo.url}
                 alt=""
-                sizes="auto"
+                sizes="(max-width: 100), (max-heigth: 32)"
                 fill
-                className="size-auto"
               />
             </div>
           )}

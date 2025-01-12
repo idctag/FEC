@@ -28,7 +28,7 @@ const Intro = (props: IntroType) => {
           <Image
             src={img.url!}
             alt=""
-            className="z-10"
+            className="z-10 size-auto"
             height={600}
             width={500}
           />

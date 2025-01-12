@@ -4,6 +4,7 @@ import HeaderServer from "@/blocks/global/Header/server";
 import FooterServer from "@/blocks/global/Footer/server";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
+import { NextIntlClientProvider } from "next-intl";
 
 export const metadata: Metadata = {
   title: "Focus Education Center",
@@ -23,11 +24,13 @@ export default async function RootLayout({
   }
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={`antialiased font-istok`}>
-        <HeaderServer />
-        {children}
-        <FooterServer />
-      </body>
+      <NextIntlClientProvider>
+        <body className={`antialiased font-istok`}>
+          <HeaderServer />
+          {children}
+          <FooterServer />
+        </body>
+      </NextIntlClientProvider>
     </html>
   );
 }

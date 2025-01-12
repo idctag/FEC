@@ -28,8 +28,9 @@ const Environment = ({ image, title, subtitle, desc }: EnvironmentProps) => {
         <Image
           src={image.url!}
           alt=""
-          className="md:rounded-3xl"
-          height={700}
+          priority
+          className="md:rounded-3xl w-[700px] h-[500px]"
+          height={500}
           width={700}
         />
       </div>
