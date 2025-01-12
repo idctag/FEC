@@ -24,7 +24,7 @@ const TimeLineServer = (props: TimeLineProps) => {
   return (
     <div
       id={props.scroll || ""}
-      className="flex w-full mt-12 justify-center bg-[#e0e7ff]"
+      className="flex w-full mt-12 justify-center bg-[#e0f2fe]"
     >
       <div className="w-full max-w-screen-2xl">
         <VerticalTimeline className="vertical-timeline-custom-line  vertical-timeline vertical-timeline--animate vertical-timeline--two-columns">
